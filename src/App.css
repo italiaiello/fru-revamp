@@ -1,17 +1,144 @@
 .App {
   text-align: center;
-}
-
-.fru-header {
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  background-color: #AB886F;
-  height: 20vh;
 }
 
-.fru-logo {
+.fru-section {
+  width: 100%;
+}
+
+.divider {
+  width: 10%;
+  margin: 50px 0;
+}
+
+.btn {
+  border: none;
+  outline: none;
+}
+
+.submit-button {
+  width: 50%;
+  height: 80px;
+  border-radius: 20px;
+  background-color: #4D55E6;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.option, .alternate-option {
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+.option:hover {
+  transform: scale(1.05);
+}
+
+.option:active {
+  transform: scale(0.95);
+}
+
+.alternate-option {
+  color: #4D55E6;
+  margin: 0;
+}
+
+.alternate-option:hover {
+  color: black;
+}
+
+/* Forms */
+
+.fru-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.fru-form input {
+  width: 60%;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid rgb(199, 199, 199);
+  padding: 20px 15px;
+  margin: 10px 0;
+}
+
+/* Entrance */
+
+.entrance-section {
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.entrance-figure {
+  width: 30%;
+  margin: 0;
+}
+
+.entrance-figure img {
+  width: 100%;
+  height: auto;
+}
+
+.entrance-article {
+  width: 40%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+#welcome-message {
   position: absolute;
-  left: 100px;
+  top: 20px;
+}
+
+#welcome-message h2 {
+  font-size: 2rem;
+}
+
+/* Sign In */
+
+.signin-section {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-section h2 {
+  position: absolute;
+  top: 10px;
+}
+
+.signin-button {
+  width: 30%;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4D55E6;
+  color: white;
+}
+
+.signin-button:hover {
+  background-color: black;
 }

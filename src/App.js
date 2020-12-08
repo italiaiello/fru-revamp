@@ -1,4 +1,3 @@
-import Header from './components/Header/Header';
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,13 +5,25 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import Entrance from './components/Entrance/Entrance';
+import SignIn from "./components/SignIn/SignIn";
 
 const App = () => {
+
   return (
     <Router>
       <div className="App">
-          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Entrance />
+            </Route>
+            <Route path="/sign-in">
+              <SignIn />
+            </Route>
+          </Switch>
       </div>
+
+      
     </Router>
   );
 }
