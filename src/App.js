@@ -5,8 +5,9 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import Entrance from './components/Entrance/Entrance';
-import SignIn from "./components/SignIn/SignIn";
+import FormHeader from "./components/FormHeader/FormHeader";
+import Entrance from './pages/Entrance/Entrance';
+import SignIn from "./pages/SignIn/SignIn";
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
               <Entrance />
             </Route>
             <Route path="/sign-in">
+              <FormHeader currentForm={"SignIn"} />
               <SignIn />
             </Route>
           </Switch>
