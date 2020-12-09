@@ -18,33 +18,25 @@ const SignIn = () => {
         setShowErrorMessage(false);
     }
 
-    const isEmailValid = () => {
-        var re = /^\S+@\S+[\.][0-9a-z]+$/;
-        return re.test(email);
-    }
-
     const onSubmitSignIn = e => {
         e.preventDefault();
-        if (!isEmailValid()) {
-            setShowErrorMessage(true);
-        }
+        console.log(email, password);
     }
 
     
 
     return (
         <section className="fru-section signin-section">
-            <h2>Sign In</h2>
+            <h2>Football Round-Up</h2>
             <form className="fru-form">
                 <input className="fru-form-input" placeholder="Email" type="email" onChange={onEmailChange} />
                 <input className="fru-form-input" placeholder="Password" type="password" onChange={onPasswordChange} />
+                {
+                    showErrorMessage &&
+                    <ErrorMessage message={"Email or password is incorrect"} />
+                }
                 <button className="submit-button" onClick={onSubmitSignIn}>Sign In</button>
             </form>
-            {
-                showErrorMessage &&
-                <ErrorMessage />
-            }
-            
         </section>
     )
 }

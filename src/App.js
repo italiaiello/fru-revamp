@@ -8,6 +8,7 @@ import './App.css';
 import FormHeader from "./components/FormHeader/FormHeader";
 import Entrance from './pages/Entrance/Entrance';
 import SignIn from "./pages/SignIn/SignIn";
+import Register from "./pages/Register/Register";
 
 const App = () => {
 
@@ -21,6 +22,10 @@ const App = () => {
             <Route path="/sign-in">
               <FormHeader currentForm={"SignIn"} />
               <SignIn />
+            </Route>
+            <Route path="/register">
+              <FormHeader currentForm={"Register"} />
+              <Register />
             </Route>
           </Switch>
       </div>

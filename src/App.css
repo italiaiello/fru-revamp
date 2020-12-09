@@ -1,3 +1,4 @@
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -6,6 +7,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  font-family: "Nunito Sans";
+}
+
+h1, h2, h3, h4 {
+  font-family: Halant;
 }
 
 .fru-section {
@@ -154,6 +160,12 @@
   background-color: rgba(77, 85, 230, 0.9);
 }
 
+/* Register */
+
+.step {
+  width: 100%;
+}
+
 /* Form Header */
 
 .form-header {
@@ -186,14 +198,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 10px;
   color: #E66563;
 }
 
 .error-figure {
-  width: 40px;
+  width: 35px;
   margin: 0;
-  margin-right: 20px;
+  margin-right: 10px;
+  display: none;
 }
 
 .error-figure img {
