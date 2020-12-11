@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-const SignIn = () => {
+const Register = ({ isLoading, leaguesData }) => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -57,6 +57,7 @@ const SignIn = () => {
     const buttonNames = ['Next Step', 'Next Step', 'Register'];
 
 
+
     const showCurrentStep = () => {
         switch(currentStep) {
             case 0:
@@ -91,20 +92,30 @@ const SignIn = () => {
 
     return (
         <section className="fru-section signin-section">
-            <h2>Register for Football Round-Up</h2>
-            <form className="fru-form">
-                <h4>Step {currentStep + 1} of 3</h4>
-                {
-                    showCurrentStep()
-                }
-                {
-                    showErrorMessage &&
-                    <ErrorMessage message={errorMessage} />
-                }
-                <button className="submit-button" onClick={buttonFunctions[currentStep]}>{buttonNames[currentStep]}</button>
-            </form>
+            {
+                console.log(leaguesData)
+            }
+            {
+                isLoading ?
+                <h2>Loading Registration Form...</h2>
+                :
+                <>
+                    <h2>Register for Football Round-Up</h2>
+                    <form className="fru-form">
+                        <h4>Step {currentStep + 1} of 3</h4>
+                        {
+                            showCurrentStep()
+                        }
+                        {
+                            showErrorMessage &&
+                            <ErrorMessage message={errorMessage} />
+                        }
+                        <button className="submit-button" onClick={buttonFunctions[currentStep]}>{buttonNames[currentStep]}</button>
+                    </form>
+                </>
+            }
         </section>
     )
 }
 
-export default SignIn
+export default Register
