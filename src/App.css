@@ -65,7 +65,7 @@ h1, h2, h3, h4 {
   width: 60%;
   border-radius: 5px;
   border: 1px solid rgb(199, 199, 199);
-  padding: 20px 15px;
+  padding: 20px 30px;
   margin: 10px 0;
   outline: none;
 }
@@ -164,6 +164,14 @@ h1, h2, h3, h4 {
 
 .step {
   width: 100%;
+}
+
+.dropdown {
+  font-size: 15px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right #ddd;
+    -webkit-appearance: none;
+    background-position-x: 95%;
+  background-color: #fff;
 }
 
 /* Form Header */

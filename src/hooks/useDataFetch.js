@@ -3,23 +3,26 @@ import { useEffect, useState } from 'react'
 export const useDataFetch = (url) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState({});
+    const [data, setData] = useState();
     const [error, setError] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            setIsLoading(true)
-            try {
-                const response = await fetch(url)
-                const json = await response.json()
-                setData(json)
-            } catch(error) {
-                setError(error)
-            }
+        setIsLoading(true)
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
             setIsLoading(false)
-        }
-        fetchData()
+            setData(data)
+        })
+        .catch(err => {
+            console.log(err)
+            setIsLoading(false)
+            setData('Not found')
+            setError(err)
+        })
     }, [url])
 
-    return { isLoading, data, error };
+    return [ isLoading, data, error ];
 }

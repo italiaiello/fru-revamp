@@ -1,7 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import Dropdown from '../../components/Dropdown/Dropdown';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { useDataFetch } from '../../hooks/useDataFetch';
 
-const Register = ({ isLoading, leaguesData }) => {
+const Register = () => {
+
+    const [ isLoading, data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php');
+
+    const [leaguesData, setLeaguesData] = useState([])
+    const [leagueDropdownOptions, setLeagueDropdownOptions] = useState([])
+    const [teamDropdownOptions, setTeamDropdownOptions] = useState(['Manchester United', 'AC Milan', 'Real Madrid', 'Sydney FC', 'Monaco', 'Bayern'])
+
+    useEffect(() => {
+        if (data) {
+            setLeaguesData(data.leagues);
+            const options = data.leagues.filter(league => {
+                if (league.strSport === 'Soccer') {
+                    if (league.strLeague.includes('Cup') || league.strLeague.includes('Copa') || league.strLeague.includes('Trophy') || league.strLeague.includes('Champions League') || league.strLeague.includes('Coupe') || league.strLeague.includes('UEFA') || league.strLeague.includes('_') || league.strLeague.includes('Friendlies') || league.strLeague.includes('Shield') || league.strLeague === 'DFB-Pokal') {
+                        return false
+                    } else {
+                        return true
+                    }  
+                }
+
+                return false
+            })
+            .map(league => league.strLeague)
+            .sort();
+            
+            setLeagueDropdownOptions(options);
+        }
+    }, [data])
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -35,7 +64,6 @@ const Register = ({ isLoading, leaguesData }) => {
             setErrorMessage("Email is incorrect");
             setShowErrorMessage(true);
         }
-        console.log("I am clicked")
     }
 
     const checkPasswordsMatch = (e) => {
@@ -56,8 +84,6 @@ const Register = ({ isLoading, leaguesData }) => {
     const buttonFunctions = [isEmailValid, checkPasswordsMatch, onSubmitSignIn];
     const buttonNames = ['Next Step', 'Next Step', 'Register'];
 
-
-
     const showCurrentStep = () => {
         switch(currentStep) {
             case 0:
@@ -77,8 +103,8 @@ const Register = ({ isLoading, leaguesData }) => {
             case 2:
                 return (
                     <article className="step">
-                        <input className="fru-form-input" name="league" placeholder="League" type="text" onChange={onLeagueChange} value={league} />
-                        <input className="fru-form-input" name="team" placeholder="Team" type="text" onChange={onTeamChange} value={team} />
+                        <Dropdown dropdownOptions={leagueDropdownOptions} prompt={"Please select a league"} onChangeFunction={onLeagueChange} />
+                        <Dropdown dropdownOptions={teamDropdownOptions} prompt={"Please select a team"} onChangeFunction={onTeamChange} />
                     </article>
                 )
             default:
@@ -93,10 +119,7 @@ const Register = ({ isLoading, leaguesData }) => {
     return (
         <section className="fru-section signin-section">
             {
-                console.log(leaguesData)
-            }
-            {
-                isLoading ?
+                isLoading || !leaguesData.length ?
                 <h2>Loading Registration Form...</h2>
                 :
                 <>
