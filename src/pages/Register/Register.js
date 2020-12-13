@@ -1,45 +1,50 @@
 import React, { useEffect, useState } from 'react'
 import Dropdown from '../../components/Dropdown/Dropdown';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { handleLeagues } from '../../functions/handleLeagues';
 import { useDataFetch } from '../../hooks/useDataFetch';
 
 const Register = () => {
 
     const [ isLoading, data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php');
+    // const { isLoadingTeams, teamsData, teamsError } = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=English%20Premier%20League');
 
-    const [leaguesData, setLeaguesData] = useState([])
+    const [leagues, setLeagues] = useState([])
+    const [teams, setTeams] = useState([])
     const [leagueDropdownOptions, setLeagueDropdownOptions] = useState([])
-    const [teamDropdownOptions, setTeamDropdownOptions] = useState(['Manchester United', 'AC Milan', 'Real Madrid', 'Sydney FC', 'Monaco', 'Bayern'])
+    const [teamDropdownOptions, setTeamDropdownOptions] = useState([])
+
+    const [league, setLeague] = useState('')
+    const [team, setTeam] = useState('')
 
     useEffect(() => {
         if (data) {
-            setLeaguesData(data.leagues);
-            const options = data.leagues.filter(league => {
-                if (league.strSport === 'Soccer') {
-                    if (league.strLeague.includes('Cup') || league.strLeague.includes('Copa') || league.strLeague.includes('Trophy') || league.strLeague.includes('Champions League') || league.strLeague.includes('Coupe') || league.strLeague.includes('UEFA') || league.strLeague.includes('_') || league.strLeague.includes('Friendlies') || league.strLeague.includes('Shield') || league.strLeague === 'DFB-Pokal') {
-                        return false
-                    } else {
-                        return true
-                    }  
-                }
-
-                return false
-            })
-            .map(league => league.strLeague)
-            .sort();
-            
+            setLeagues(data.leagues);
+            const options = handleLeagues(data)
             setLeagueDropdownOptions(options);
         }
     }, [data])
+
+    useEffect(() => {
+        if (league.length) {
+            fetch(`https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=${league}`)
+                .then(response => response.json())
+                .then(data => {
+                    setTeams(data.teams)
+                    const allTeams = data.teams.map(team => team.strTeam);
+                    setTeamDropdownOptions(allTeams);
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }, [league])
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
-    
-    const [league, setLeague] = useState('')
-    const [team, setTeam] = useState('')
     
     const [currentStep, setCurrentStep] = useState(0);
 
@@ -104,7 +109,10 @@ const Register = () => {
                 return (
                     <article className="step">
                         <Dropdown dropdownOptions={leagueDropdownOptions} prompt={"Please select a league"} onChangeFunction={onLeagueChange} />
-                        <Dropdown dropdownOptions={teamDropdownOptions} prompt={"Please select a team"} onChangeFunction={onTeamChange} />
+                        {
+                            teamDropdownOptions.length &&
+                            <Dropdown dropdownOptions={teamDropdownOptions} prompt={"Please select a team"} onChangeFunction={onTeamChange} />
+                        }
                     </article>
                 )
             default:
@@ -119,7 +127,7 @@ const Register = () => {
     return (
         <section className="fru-section signin-section">
             {
-                isLoading || !leaguesData.length ?
+                isLoading || !leagues.length ?
                 <h2>Loading Registration Form...</h2>
                 :
                 <>
