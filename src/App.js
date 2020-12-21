@@ -9,6 +9,7 @@ import FormHeader from "./components/FormHeader/FormHeader";
 import Entrance from './pages/Entrance/Entrance';
 import SignIn from "./pages/SignIn/SignIn";
 import Register from "./pages/Register/Register";
+import SearchLeagues from "./pages/SearchLeagues/SearchLeagues";
 
 const App = () => {
 
@@ -26,6 +27,9 @@ const App = () => {
             <Route path="/register">
               <FormHeader currentForm={"Register"} />
               <Register />
+            </Route>
+            <Route path="/search-leagues">
+              <SearchLeagues />
             </Route>
           </Switch>
       </div>
