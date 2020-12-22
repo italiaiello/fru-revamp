@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-export const useDataFetch = (url, toggleLoading) => {
+export const useLeaguesFetch = (url) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [data, setData] = useState();
+    const [leaguesData, setLeaguesData] = useState();
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -12,21 +12,18 @@ export const useDataFetch = (url, toggleLoading) => {
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            const filteredData = data.leagues.filter(league => league.strSport === 'Soccer' && !league.strLeague.includes('_'))
+            console.log(filteredData)
+            setLeaguesData(filteredData)
             setIsLoading(false)
-            setData(data)
         })
         .catch(err => {
             console.log(err)
-            setIsLoading(false)
-            setData('Not found')
+            setLeaguesData('Not found')
             setError(err)
+            setIsLoading(false)
         })
     }, [url])
-
-    if (toggleLoading === 'no-loading') {
-        return [ data, error ]
-    }
     
-    return [ isLoading, data, error ];
+    return [ isLoading, leaguesData, error ];
 }

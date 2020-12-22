@@ -1,23 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Leagues from '../../components/Leagues/Leagues'
-import { useDataFetch } from '../../hooks/useDataFetch'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import { useLeaguesFetch } from '../../hooks/useLeaguesFetch'
 
 const SearchLeagues = () => {
 
-    const [ isLoading, data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=Soccer')
+    const [ isLoading, leaguesData, error ] = useLeaguesFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php')
+
+    const [filteredLeagues, setFilteredLeagues] = useState([])
+
+    useEffect(() => {
+        if (leaguesData) {
+            setFilteredLeagues(leaguesData)
+        }
+    }, [leaguesData])
 
     if (error) return <>Network error</>
 
     return (
         <>
             {
-                isLoading || !data ?
+                isLoading || !leaguesData ?
                 <h2>Loading leagues...</h2>
                 :
                 <section className='fru-section'>
                     <h2>Football Round-Up</h2>
                     <h3>Select a league</h3>
-                    <Leagues leagues={data.countrys} />
+                    <SearchBar data={leaguesData} setData={setFilteredLeagues} />
+                    <Leagues leagues={filteredLeagues} />
                 </section>
             }
         </>

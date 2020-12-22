@@ -28,7 +28,7 @@ const App = () => {
               <FormHeader currentForm={"Register"} />
               <Register />
             </Route>
-            <Route path="/search-leagues">
+            <Route path="/search-competitions">
               <SearchLeagues />
             </Route>
           </Switch>

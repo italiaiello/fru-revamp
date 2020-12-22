@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Dropdown from '../../components/Dropdown/Dropdown';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import { fetchTeams } from '../../functions/fetchTeams';
-import { handleLeagues } from '../../functions/handleLeagues';
 import { useDataFetch } from '../../hooks/useDataFetch';
 
 const Register = () => {
 
-    const [ isLoading, data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=Soccer');
+    const [ data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=Soccer', "no-loading");
 
     const [leagues, setLeagues] = useState([])
     const [teams, setTeams] = useState([])

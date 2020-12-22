@@ -239,10 +239,9 @@ h1, h2, h3, h4 {
   padding: 20px 0;
   background-color: #E2B071;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .league-badge {
@@ -258,4 +257,16 @@ h1, h2, h3, h4 {
 .league-name {
   width: 80%;
   font-weight: 600;
+}
+
+/* Search Bar */
+
+.search-bar {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.search-bar-input {
+  width: 65%;
 }
