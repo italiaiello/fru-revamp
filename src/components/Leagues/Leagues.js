@@ -1,19 +1,16 @@
 import React from 'react'
+import LeagueCard from '../LeagueCard/LeagueCard'
 
 const Leagues = ({ leagues }) => {
 
-    if (!leagues) return <>I like chicken</>
-
-    console.log(leagues)
+    if (!leagues) return <>No leagues found</>
 
     return (
         <article className="leagues">
             {
-                leagues.map(league => (
-                    <article className="league-card option">
-                        <p className="league-name">{league.strLeague}</p>
-                    </article>
-                ))
+                leagues.map(league => {
+                    return <LeagueCard leagueId={league.idLeague} leagueName={league.strLeague} />
+                })
             }
         </article>
     )

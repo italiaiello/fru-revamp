@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export const useLeaguesFetch = (url) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [leaguesData, setLeaguesData] = useState();
+    const [leaguesData, setLeaguesData] = useState([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -19,10 +19,10 @@ export const useLeaguesFetch = (url) => {
         })
         .catch(err => {
             console.log(err)
-            setLeaguesData('Not found')
             setError(err)
             setIsLoading(false)
         })
+
     }, [url])
     
     return [ isLoading, leaguesData, error ];

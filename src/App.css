@@ -235,10 +235,12 @@ h1, h2, h3, h4 {
 
 .league-card {
   width: 30%;
+  height: 350px;
   margin: 10px;
   padding: 20px 0;
   background-color: #E2B071;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -252,6 +254,16 @@ h1, h2, h3, h4 {
 .league-badge img {
   width: 100%;
   height: auto;
+}
+
+.no-image {
+  width: 70%;
+  height: 250px;
+  background-color: #AB886F;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .league-name {
