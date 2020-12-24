@@ -12,6 +12,7 @@ import Entrance from './pages/Entrance/Entrance';
 import SignIn from "./pages/SignIn/SignIn";
 import Register from "./pages/Register/Register";
 import SearchLeagues from "./pages/SearchLeagues/SearchLeagues";
+import LeagueTable from './pages/LeagueTable/LeagueTable';
 
 const App = () => {
 
@@ -38,10 +39,7 @@ const App = () => {
               <SearchLeagues setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
             </Route>
             <Route path={`/search-competitions/${selectedLeague}`}>
-              <>
-                <h2>League Details</h2>
-                <p>{selectedLeagueDetails.strLeague}</p>
-              </>
+              <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
             </Route>
           </Switch>
       </div>

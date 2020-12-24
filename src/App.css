@@ -222,6 +222,18 @@ h1, h2, h3, h4 {
   height: auto;
 }
 
+/* Search Bar */
+
+.search-bar {
+  width: 40%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.search-bar-input {
+  width: 65%;
+}
+
 /* Leagues */
 
 .leagues {
@@ -271,14 +283,23 @@ h1, h2, h3, h4 {
   font-weight: 600;
 }
 
-/* Search Bar */
+/* League Table */
 
-.search-bar {
-  width: 40%;
+.league-table {
+  width: 60%;
   margin: 0 auto;
-  margin-bottom: 20px;
+  border-collapse: collapse;
 }
 
-.search-bar-input {
-  width: 65%;
+.league-table-row {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.league-table-row:nth-child(odd) {
+  background-color:#e0e0e0;
+}
+
+.league-table-row:last-child {
+  border: none;
 }
