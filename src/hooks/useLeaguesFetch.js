@@ -13,7 +13,6 @@ export const useLeaguesFetch = (url) => {
         .then(response => response.json())
         .then(data => {
             const filteredData = data.leagues.filter(league => league.strSport === 'Soccer' && !league.strLeague.includes('_'))
-            console.log(filteredData)
             setLeaguesData(filteredData)
             setIsLoading(false)
         })

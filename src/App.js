@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +14,9 @@ import Register from "./pages/Register/Register";
 import SearchLeagues from "./pages/SearchLeagues/SearchLeagues";
 
 const App = () => {
+
+  const [selectedLeague, setSelectedLeague] = useState('cheese')
+  const [selectedLeagueDetails, setSelectedLeagueDetails] = useState({})
 
   return (
     <Router>
@@ -28,8 +33,15 @@ const App = () => {
               <FormHeader currentForm={"Register"} />
               <Register />
             </Route>
-            <Route path="/search-competitions">
-              <SearchLeagues />
+
+            <Route exact path="/search-competitions">
+              <SearchLeagues setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
+            </Route>
+            <Route path={`/search-competitions/${selectedLeague}`}>
+              <>
+                <h2>League Details</h2>
+                <p>{selectedLeagueDetails.strLeague}</p>
+              </>
             </Route>
           </Switch>
       </div>

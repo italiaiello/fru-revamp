@@ -3,15 +3,20 @@ import Leagues from '../../components/Leagues/Leagues'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useLeaguesFetch } from '../../hooks/useLeaguesFetch'
 
-const SearchLeagues = () => {
+const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
 
     const [ isLoading, leaguesData, error ] = useLeaguesFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php')
 
     const [filteredLeagues, setFilteredLeagues] = useState([])
 
     useEffect(() => {
-        if (leaguesData) {
+        let isMounted = true
+        if (leaguesData && isMounted) {
             setFilteredLeagues(leaguesData)
+        }
+
+        return function cleanup() {
+            isMounted = false
         }
     }, [leaguesData])
 
@@ -27,7 +32,7 @@ const SearchLeagues = () => {
                     <h2>Football Round-Up</h2>
                     <h3>Select a league</h3>
                     <SearchBar data={leaguesData} setData={setFilteredLeagues} />
-                    <Leagues leagues={filteredLeagues} />
+                    <Leagues leagues={filteredLeagues} setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
                 </section>
             }
         </>

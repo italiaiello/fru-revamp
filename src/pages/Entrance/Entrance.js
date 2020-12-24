@@ -5,9 +5,7 @@ import Fans from '../../assets/images/fans.svg'
 const Entrance = () => {
 
     let history = useHistory();
-
-
-
+    
     return (
         <section className="fru-section entrance-section">
             <figure className="entrance-figure">
