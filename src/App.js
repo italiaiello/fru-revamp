@@ -16,9 +16,6 @@ import LeagueTable from './pages/LeagueTable/LeagueTable';
 
 const App = () => {
 
-  const [selectedLeague, setSelectedLeague] = useState('cheese')
-  const [selectedLeagueDetails, setSelectedLeagueDetails] = useState({})
-
   return (
     <Router>
       <div className="App">

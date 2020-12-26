@@ -10,6 +10,9 @@ const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
 
     const [filteredLeagues, setFilteredLeagues] = useState([])
 
+    const [selectedLeague, setSelectedLeague] = useState('cheese')
+    const [selectedLeagueDetails, setSelectedLeagueDetails] = useState({})
+
     useEffect(() => {
         let isMounted = true
         if (leaguesData && isMounted) {
@@ -31,10 +34,18 @@ const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
                 <Loading message="Loading leagues..." />
                 :
                 <section className='fru-section'>
-                    <h2>Football Round-Up</h2>
-                    <h3>Select a league</h3>
-                    <SearchBar data={leaguesData} setData={setFilteredLeagues} />
-                    <Leagues leagues={filteredLeagues} setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
+                    <Switch>
+                        <Route exact path={path}>
+                            <h2>Football Round-Up</h2>
+                            <h3>Select a league</h3>
+                            <SearchBar data={leaguesData} setData={setFilteredLeagues} />
+                            <Leagues leagues={filteredLeagues} setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
+                        </Route>
+                        <Route path={`/search-competitions/${selectedLeague}`}>
+                            <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
+                        </Route>
+                    </Switch>
+                    
                 </section>
             }
         </>

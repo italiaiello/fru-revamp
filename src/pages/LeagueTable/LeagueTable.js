@@ -69,6 +69,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                         
                     }
                 </>
+                
             }
         </section>
     )
