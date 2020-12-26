@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Leagues from '../../components/Leagues/Leagues'
+import Loading from '../../components/Loading/Loading'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useLeaguesFetch } from '../../hooks/useLeaguesFetch'
 
@@ -25,8 +26,9 @@ const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
     return (
         <>
             {
-                isLoading || !leaguesData ?
-                <h2>Loading leagues...</h2>
+                isLoading || !leaguesData 
+                ?
+                <Loading message="Loading leagues..." />
                 :
                 <section className='fru-section'>
                     <h2>Football Round-Up</h2>

@@ -296,10 +296,15 @@ h1, h2, h3, h4 {
   border-bottom: 1px solid black;
 }
 
-.league-table-row:nth-child(odd) {
-  background-color:#e0e0e0;
+.league-table-row:nth-child(even) {
+  background-color:#eeeeee;
 }
 
 .league-table-row:last-child {
   border: none;
+}
+
+.league-table-row:hover {
+  background-color: #9398EA;
+  cursor: pointer;
 }

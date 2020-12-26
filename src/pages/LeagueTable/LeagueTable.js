@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Dropdown from '../../components/Dropdown/Dropdown'
+import Loading from '../../components/Loading/Loading'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
 const LeagueTable = ({ leagueId, leagueName }) => {
@@ -22,7 +23,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
         <section className="fru-section">
             {
                 isLoading || !leagueTable ?
-                <h2>Loading league table...</h2>
+                <Loading message={"Loading league table..."} />
                 :
                 <>
                     <h2>{leagueName}</h2>
@@ -41,6 +42,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                     <th>GF</th>
                                     <th>GA</th>
                                     <th>GD</th>
+                                    <th>Pts</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +59,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                                 <td>{team.goalsfor}</td>
                                                 <td>{team.goalsagainst}</td>
                                                 <td>{team.goalsdifference}</td>
+                                                <td>{team.total}</td>
                                             </tr>
                                         )
                                     })
