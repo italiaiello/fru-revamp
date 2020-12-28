@@ -4,7 +4,7 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import Loading from '../../components/Loading/Loading'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
-const LeagueTable = ({ leagueId, leagueName }) => {
+const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
 
     const [selectedSeason, setSelectedSeason] = useState('2020-2021')
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
@@ -55,7 +55,10 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                             const formattedTeamName = team.name.toLowerCase().split(' ').join('-')
                                             const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-')
                                             return (
-                                                <tr key={team.teamid} className="league-table-row option" onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}`)}>
+                                                <tr key={team.teamid} 
+                                                    className="league-table-row option" 
+                                                    onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
+                                                >
                                                     <td>{index + 1}</td>
                                                     <td>{team.name}</td>
                                                     <td>{team.played}</td>
