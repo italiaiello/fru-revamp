@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 
-const LeagueCard = ({ leagueId, leagueName, setSelectedLeague, setSelectedLeagueDetails }) => {
+const LeagueCard = ({ leagueId, leagueName, setSelectedLeagueDetails }) => {
 
     const [leagueBadge, setLeagueBadge] = useState('')
     const [leagueDetails, setLeagueDetails] = useState({})
@@ -26,7 +26,6 @@ const LeagueCard = ({ leagueId, leagueName, setSelectedLeague, setSelectedLeague
 
     const onLeagueSelect = e => {
         const formattedLeague = leagueDetails.strLeague.toLowerCase().split(' ').join('-')
-        setSelectedLeague(formattedLeague)
         setSelectedLeagueDetails(leagueDetails)
         history.push(`/search-competitions/${formattedLeague}`)
     }

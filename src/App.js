@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   BrowserRouter as Router,
@@ -11,8 +11,7 @@ import FormHeader from "./components/FormHeader/FormHeader";
 import Entrance from './pages/Entrance/Entrance';
 import SignIn from "./pages/SignIn/SignIn";
 import Register from "./pages/Register/Register";
-import SearchLeagues from "./pages/SearchLeagues/SearchLeagues";
-import LeagueTable from './pages/LeagueTable/LeagueTable';
+import LeagueContainer from './components/LeagueContainer/LeagueContainer';
 
 const App = () => {
 
@@ -32,16 +31,11 @@ const App = () => {
               <Register />
             </Route>
 
-            <Route exact path="/search-competitions">
-              <SearchLeagues setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
-            </Route>
-            <Route path={`/search-competitions/${selectedLeague}`}>
-              <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
+            <Route path="/search-competitions">
+              <LeagueContainer />
             </Route>
           </Switch>
-      </div>
-
-      
+      </div>  
     </Router>
   );
 }

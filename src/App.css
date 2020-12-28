@@ -285,8 +285,16 @@ h1, h2, h3, h4 {
 
 /* League Table */
 
-.league-table {
+.league-table-container {
   width: 60%;
+  margin: 20px auto;
+  background-color: #E2B071;
+  padding: 30px 0;
+  border-radius: 20px;
+}
+
+.league-table {
+  width: 90%;
   margin: 0 auto;
   border-collapse: collapse;
 }
@@ -294,10 +302,23 @@ h1, h2, h3, h4 {
 .league-table-row {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+  color: white;
+}
+
+.league-table-row td {
+  padding: 5px 0;
+}
+
+.league-table-row:nth-child(odd) {
+  background-color: #44362c;
 }
 
 .league-table-row:nth-child(even) {
-  background-color:#eeeeee;
+  background-color: #6d5747;
+}
+
+.league-table-row:first-child {
+  border-radius: 10px;
 }
 
 .league-table-row:last-child {
@@ -305,6 +326,6 @@ h1, h2, h3, h4 {
 }
 
 .league-table-row:hover {
-  background-color: #9398EA;
+  background-color: #121212;
   cursor: pointer;
 }

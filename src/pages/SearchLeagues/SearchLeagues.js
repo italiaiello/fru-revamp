@@ -4,14 +4,11 @@ import Loading from '../../components/Loading/Loading'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useLeaguesFetch } from '../../hooks/useLeaguesFetch'
 
-const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
+const SearchLeagues = ({ setSelectedLeagueDetails }) => {
 
     const [ isLoading, leaguesData, error ] = useLeaguesFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php')
 
     const [filteredLeagues, setFilteredLeagues] = useState([])
-
-    const [selectedLeague, setSelectedLeague] = useState('cheese')
-    const [selectedLeagueDetails, setSelectedLeagueDetails] = useState({})
 
     useEffect(() => {
         let isMounted = true
@@ -34,18 +31,10 @@ const SearchLeagues = ({ setSelectedLeague, setSelectedLeagueDetails }) => {
                 <Loading message="Loading leagues..." />
                 :
                 <section className='fru-section'>
-                    <Switch>
-                        <Route exact path={path}>
-                            <h2>Football Round-Up</h2>
-                            <h3>Select a league</h3>
-                            <SearchBar data={leaguesData} setData={setFilteredLeagues} />
-                            <Leagues leagues={filteredLeagues} setSelectedLeague={setSelectedLeague} setSelectedLeagueDetails={setSelectedLeagueDetails} />
-                        </Route>
-                        <Route path={`/search-competitions/${selectedLeague}`}>
-                            <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
-                        </Route>
-                    </Switch>
-                    
+                    <h2>Football Round-Up</h2>
+                    <h3>Select a league</h3>
+                    <SearchBar data={leaguesData} setData={setFilteredLeagues} />
+                    <Leagues leagues={filteredLeagues} setSelectedLeagueDetails={setSelectedLeagueDetails} />
                 </section>
             }
         </>

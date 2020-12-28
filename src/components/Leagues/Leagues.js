@@ -1,7 +1,7 @@
 import React from 'react'
 import LeagueCard from '../LeagueCard/LeagueCard'
 
-const Leagues = ({ leagues, setSelectedLeague, setSelectedLeagueDetails }) => {
+const Leagues = ({ leagues, setSelectedLeagueDetails }) => {
 
     if (!leagues) return <>No leagues found</>
 
@@ -12,8 +12,7 @@ const Leagues = ({ leagues, setSelectedLeague, setSelectedLeagueDetails }) => {
                 leagues.map(league => {
                     return <LeagueCard  key={league.idLeague} 
                                         leagueId={league.idLeague} 
-                                        leagueName={league.strLeague} 
-                                        setSelectedLeague={setSelectedLeague}
+                                        leagueName={league.strLeague}
                                         setSelectedLeagueDetails={setSelectedLeagueDetails}
                             />
                 })

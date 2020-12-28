@@ -4,7 +4,7 @@ const LeagueDetails = ({ league }) => {
 
     return (
         <section className="fru-section">
-            <h2></h2>
+            <h2>League details</h2>
         </section>
     )
 }
