@@ -329,3 +329,13 @@ h1, h2, h3, h4 {
   background-color: #121212;
   cursor: pointer;
 }
+
+/* Team Details */
+
+.team-details-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 80%;
+}

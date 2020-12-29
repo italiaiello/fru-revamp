@@ -26,7 +26,14 @@ const TeamDetails = () => {
                 ?
                 <Loading message={"Loading team details..."} />
                 :
-                <h2>{teamDetails.strTeam}</h2>
+                <>
+                    <article className="team-details-header">
+                        <figure className="team-logo">
+                            <img src={`${teamDetails.strTeamBadge}/preview`} />
+                        </figure>
+                        <h2>{teamDetails.strTeam}</h2>
+                    </article>
+                </>
             }
         </section>
     )
