@@ -337,5 +337,60 @@ h1, h2, h3, h4 {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 80%;
+  width: 100%;
+}
+
+.team-logo {
+  width: 10%;
+  margin-left: 0;
+}
+
+.team-logo img {
+  width: 100%;
+  height: auto;
+}
+
+.summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.summary-box {
+  width: 20%;
+  height: 150px;
+  background-color: #A7BDDF;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.summary-box p {
+  margin: 0;
+}
+
+.summary-box h3 {
+  margin-top: 0;
+}
+
+.stadium-button {
+  margin-top: 20px;
+}
+
+.team-description {
+  width: 60%;
+  margin: 0 auto;
+  white-space: pre-line;
+  text-align: left;
+  margin-top: 50px;
+}
+
+.divider {
+  width: 20%;
+  margin: 50px auto;
 }
