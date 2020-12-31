@@ -22,6 +22,8 @@ const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
 
     let history = useHistory();
 
+    if (error) return <>Network Error</>
+
     return (
         <section className="fru-section">
             {

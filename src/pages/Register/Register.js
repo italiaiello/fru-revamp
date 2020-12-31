@@ -118,6 +118,8 @@ const Register = () => {
         } else {
             setCurrentStep(0);
         }
+
+        console.log(leagues, teams)
     }
 
     const buttonFunctions = [isEmailValid, checkPasswordsMatch, onSubmitRegister];

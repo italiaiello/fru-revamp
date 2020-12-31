@@ -394,3 +394,30 @@ h1, h2, h3, h4 {
   width: 20%;
   margin: 50px auto;
 }
+
+/* Team Socials */
+
+.team-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.social-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-logo {
+  width: 40px;
+  height: auto;
+}
+
+.social-logo img {
+  width: 100%;
+  height: auto;
+}
