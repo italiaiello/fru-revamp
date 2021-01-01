@@ -421,3 +421,23 @@ h1, h2, h3, h4 {
   width: 100%;
   height: auto;
 }
+
+/* Modal */
+
+.modal-container {
+  position: absolute;
+  top: 60px;
+  left: 25vw;
+  width: 50%;
+  height: 80vh;
+  background-color: black;
+  z-index: 5;
+}
+
+.modal {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50px;
+  background-color: green;
+}

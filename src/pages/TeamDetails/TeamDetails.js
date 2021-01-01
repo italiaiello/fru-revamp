@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
+import Modal from '../../components/Modal/Modal'
 import TeamSocials from '../../components/TeamSocials/TeamSocials'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
@@ -65,6 +66,7 @@ const TeamDetails = () => {
                                     twitterUrl={teamDetails.strTwitter}
                                     youtubeUrl={teamDetails.strYoutube}
                     />
+                    <Modal />
                 </>
             }
         </section>
