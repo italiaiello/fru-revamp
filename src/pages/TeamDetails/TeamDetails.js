@@ -13,6 +13,8 @@ const TeamDetails = () => {
 
     const [teamDetails, setTeamDetails] = useState({})
 
+    const [showModal, setShowModal] = useState(false)
+
     useEffect(() => {
         if (data) {
             setTeamDetails(data.teams[0])
@@ -25,6 +27,8 @@ const TeamDetails = () => {
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
+
+    const toggleModal = (showModal) => setShowModal(showModal)
 
     if (error) return <>Network Error</>
 
@@ -50,7 +54,7 @@ const TeamDetails = () => {
                         <article className="summary-box">
                             <h3>Stadium</h3>
                             <p>{teamDetails.strStadium}</p>
-                            <button className="stadium-button">More Info</button>
+                            <button className="stadium-button" onClick={() => toggleModal(true)}>More Info</button>
                         </article>
                         <article className="summary-box">
                             <h3>Stadium Capacity</h3>
@@ -66,7 +70,9 @@ const TeamDetails = () => {
                                     twitterUrl={teamDetails.strTwitter}
                                     youtubeUrl={teamDetails.strYoutube}
                     />
-                    <Modal />
+                    {
+                        showModal ? <Modal toggleModal={toggleModal} /> : null
+                    }
                 </>
             }
         </section>
