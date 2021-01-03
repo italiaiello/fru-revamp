@@ -5,7 +5,7 @@ const ErrorMessage = ({ message }) => {
     return (
         <article className="error-message">
             <figure className="error-figure">
-                <img src={Error} alt="Error icon" />
+                <img src={Error} alt="Error icon" className="responsive-img" />
             </figure>
             <p>{message}</p>
         </article>

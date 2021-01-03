@@ -15,7 +15,7 @@ const TeamSocials = ({ teamName, websiteUrl, facebookUrl, instagramUrl, twitterU
                     websiteUrl &&
                     <figure className="social-logo option">
                         <Link to={{ pathname: `https://${websiteUrl}` }} target="_blank">
-                            <img src={Website} alt={`${teamName}'s Website`} />
+                            <img src={Website} alt={`${teamName}'s Website`} className="responsive-img" />
                         </Link>
                     </figure>
                 }  
@@ -23,7 +23,7 @@ const TeamSocials = ({ teamName, websiteUrl, facebookUrl, instagramUrl, twitterU
                     facebookUrl &&
                     <figure className="social-logo option">
                         <Link to={{ pathname: `https://${facebookUrl}` }} target="_blank">
-                            <img src={Facebook} alt={`${teamName}'s Facebook`} />
+                            <img src={Facebook} alt={`${teamName}'s Facebook`} className="responsive-img" />
                         </Link>
                     </figure>
                 }
@@ -31,7 +31,7 @@ const TeamSocials = ({ teamName, websiteUrl, facebookUrl, instagramUrl, twitterU
                     instagramUrl &&
                     <figure className="social-logo option">
                         <Link to={{ pathname: `https://${instagramUrl}` }} target="_blank">
-                            <img src={Instagram} alt={`${teamName}'s Instagram`} />
+                            <img src={Instagram} alt={`${teamName}'s Instagram`} className="responsive-img" />
                         </Link>
                     </figure>
                 }
@@ -39,7 +39,7 @@ const TeamSocials = ({ teamName, websiteUrl, facebookUrl, instagramUrl, twitterU
                     twitterUrl &&
                     <figure className="social-logo option">
                         <Link to={{ pathname: `https://${twitterUrl}` }} target="_blank">
-                            <img src={Twitter} alt={`${teamName}'s Twitter`} />
+                            <img src={Twitter} alt={`${teamName}'s Twitter`} className="responsive-img" />
                         </Link>
                     </figure>
                 }
@@ -47,7 +47,7 @@ const TeamSocials = ({ teamName, websiteUrl, facebookUrl, instagramUrl, twitterU
                     youtubeUrl &&
                     <figure className="social-logo option">
                         <Link to={{ pathname: `https://${youtubeUrl}` }} target="_blank">
-                            <img src={YouTube} alt={`${teamName}'s YouTube`} />
+                            <img src={YouTube} alt={`${teamName}'s YouTube`} className="responsive-img" />
                         </Link>
                     </figure>
                 }

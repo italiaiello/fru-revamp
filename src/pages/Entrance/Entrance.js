@@ -9,7 +9,7 @@ const Entrance = () => {
     return (
         <section className="fru-section entrance-section">
             <figure className="entrance-figure">
-                <img src={Fans} alt="Fans" />
+                <img src={Fans} alt="Fans" className="responsive-img" />
             </figure>
             <article className="entrance-article">
                 <article id="welcome-message">

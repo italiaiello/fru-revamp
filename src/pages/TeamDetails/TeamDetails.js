@@ -42,7 +42,7 @@ const TeamDetails = () => {
                 <>
                     <article className="team-details-header">
                         <figure className="team-logo">
-                            <img src={`${teamDetails.strTeamBadge}/preview`} alt={`${teamDetails.strTeam} badge`} />
+                            <img src={`${teamDetails.strTeamBadge}/preview`} alt={`${teamDetails.strTeam} badge`} className="responsive-img" />
                         </figure>
                         <h2>{teamDetails.strTeam}</h2>
                     </article>
@@ -71,7 +71,7 @@ const TeamDetails = () => {
                                     youtubeUrl={teamDetails.strYoutube}
                     />
                     {
-                        showModal ? <Modal toggleModal={toggleModal} /> : null
+                        showModal ? <Modal toggleModal={toggleModal} teamDetails={teamDetails} /> : null
                     }
                 </>
             }
