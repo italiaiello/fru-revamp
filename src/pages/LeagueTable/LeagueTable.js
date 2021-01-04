@@ -32,8 +32,11 @@ const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
                 :
                 <>
                     <h2>{leagueName}</h2>
-                    <h3>{`${selectedSeason} Season`}</h3>
+                    <button className="league-details-button highlight">Learn More</button>
+                    <br />
+                    <br />
                     <Dropdown dropdownOptions={["2020-2021", "2019-2020", "2018-2019", "2017-2018"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
+                    <h3>{`${selectedSeason} Season`}</h3>
                     {   
                         <article className="league-table-container">
                             <table className="league-table">
