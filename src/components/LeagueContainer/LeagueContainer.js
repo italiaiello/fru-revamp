@@ -22,7 +22,7 @@ const LeagueContainer = () => {
                     <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
                 </Route>
                 <Route path={`/search-competitions/:selectedLeague/details`}>
-                    <LeagueDetails />
+                    <LeagueDetails leagueDetails={selectedLeagueDetails} />
                 </Route>
                 <Route path={`/search-competitions/:selectedLeague/:selectedTeam/:teamId`}>
                     <TeamDetails />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
 import Modal from '../../components/Modal/Modal'
-import TeamSocials from '../../components/TeamSocials/TeamSocials'
+import Socials from '../../components/Socials/Socials'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
 const TeamDetails = () => {
@@ -61,14 +61,15 @@ const TeamDetails = () => {
                             <p>{teamDetails.intStadiumCapacity ? numberWithCommas(teamDetails.intStadiumCapacity) : 'No Data'}</p>
                         </article>
                     </article>
-                    <p className="team-description">{teamDetails.strDescriptionEN}</p>
+                    <p className="team-description desc-text white-space">{teamDetails.strDescriptionEN}</p>
                     <hr className="divider" />
-                    <TeamSocials    teamName={teamDetails.strTeam} 
-                                    websiteUrl={teamDetails.strWebsite} 
-                                    facebookUrl={teamDetails.strFacebook}
-                                    instagramUrl={teamDetails.strInstagram}
-                                    twitterUrl={teamDetails.strTwitter}
-                                    youtubeUrl={teamDetails.strYoutube}
+                    <Socials    
+                        name={teamDetails.strTeam} 
+                        websiteUrl={teamDetails.strWebsite} 
+                        facebookUrl={teamDetails.strFacebook}
+                        instagramUrl={teamDetails.strInstagram}
+                        twitterUrl={teamDetails.strTwitter}
+                        youtubeUrl={teamDetails.strYoutube}
                     />
                     {
                         showModal ? <Modal toggleModal={toggleModal} teamDetails={teamDetails} /> : null

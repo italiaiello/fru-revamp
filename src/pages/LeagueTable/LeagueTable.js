@@ -4,7 +4,7 @@ import Dropdown from '../../components/Dropdown/Dropdown'
 import Loading from '../../components/Loading/Loading'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
-const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
+const LeagueTable = ({ leagueId, leagueName }) => {
 
     const [selectedSeason, setSelectedSeason] = useState('2020-2021')
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
@@ -22,6 +22,8 @@ const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
 
     let history = useHistory();
 
+    const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-');
+
     if (error) return <>Network Error</>
 
     return (
@@ -32,7 +34,7 @@ const LeagueTable = ({ leagueId, leagueName, setTeamId }) => {
                 :
                 <>
                     <h2>{leagueName}</h2>
-                    <button className="league-details-button highlight">Learn More</button>
+                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${formattedLeagueName}/details`)}>Learn More</button>
                     <br />
                     <br />
                     <Dropdown dropdownOptions={["2020-2021", "2019-2020", "2018-2019", "2017-2018"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
