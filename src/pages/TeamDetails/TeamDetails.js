@@ -54,7 +54,7 @@ const TeamDetails = () => {
                         <article className="summary-box">
                             <h3>Stadium</h3>
                             <p>{teamDetails.strStadium}</p>
-                            <button className="stadium-button" onClick={() => toggleModal(true)}>More Info</button>
+                            <button className="stadium-button highlight" onClick={() => toggleModal(true)}>More Info</button>
                         </article>
                         <article className="summary-box">
                             <h3>Stadium Capacity</h3>
