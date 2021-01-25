@@ -7,7 +7,7 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 const LeagueTable = ({ leagueId, leagueName }) => {
 
     const [selectedSeason, setSelectedSeason] = useState('2020-2021')
-    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
+    const [isLoading, data, error] = useDataFetch(`https://www.divesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])
 
@@ -39,50 +39,44 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                     <br />
                     <Dropdown dropdownOptions={["2020-2021", "2019-2020", "2018-2019", "2017-2018"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
                     <h3>{`${selectedSeason} Season`}</h3>
-                    {   
-                        <article className="league-table-container">
-                            <table className="league-table">
-                                <thead>
-                                    <tr>
-                                        <th>Pos</th>
-                                        <th>Team</th>
-                                        <th>MP</th>
-                                        <th>W</th>
-                                        <th>D</th>
-                                        <th>L</th>
-                                        <th>GF</th>
-                                        <th>GA</th>
-                                        <th>GD</th>
-                                        <th>Pts</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        leagueTable.map((team, index) => {
-                                            const formattedTeamName = team.name.toLowerCase().split(' ').join('-')
-                                            const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-')
-                                            return (
-                                                <tr key={team.teamid} 
-                                                    className="league-table-row option" 
-                                                    onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
-                                                >
-                                                    <td>{index + 1}</td>
-                                                    <td>{team.name}</td>
-                                                    <td>{team.played}</td>
-                                                    <td>{team.win}</td>
-                                                    <td>{team.draw}</td>
-                                                    <td>{team.loss}</td>
-                                                    <td>{team.goalsfor}</td>
-                                                    <td>{team.goalsagainst}</td>
-                                                    <td>{team.goalsdifference}</td>
-                                                    <td>{team.total}</td>
-                                                </tr>
-                                            )
-                                        })
-                                    }
-                                </tbody>
-                            </table>
-                        </article>
+                    {
+                        <section className="league-table">
+                            <header className="table-row">
+                                <div className="table-cell">Pos</div>
+                                <div className="table-cell">Team</div>
+                                <div className="table-cell">MP</div>
+                                <div className="table-cell">W</div>
+                                <div className="table-cell">D</div>
+                                <div className="table-cell">L</div>
+                                <div className="table-cell">GF</div>
+                                <div className="table-cell">GA</div>
+                                <div className="table-cell">GD</div>
+                                <div className="table-cell">Pts</div>
+                            </header>
+                            {
+                                leagueTable.map((team, index) => {
+                                    const formattedTeamName = team.name.toLowerCase().split(' ').join('-')
+                                    const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-')
+                                    return (
+                                        <article key={team.teamid} 
+                                            className="league-table-row option" 
+                                            onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
+                                        >
+                                            <div className="table-cell">{index + 1}</div>
+                                            <div className="table-cell">{team.name}</div>
+                                            <div className="table-cell">{team.played}</div>
+                                            <div className="table-cell">{team.win}</div>
+                                            <div className="table-cell">{team.draw}</div>
+                                            <div className="table-cell">{team.loss}</div>
+                                            <div className="table-cell">{team.goalsfor}</div>
+                                            <div className="table-cell">{team.goalsagainst}</div>
+                                            <div className="table-cell">{team.goalsdifference}</div>
+                                            <div className="table-cell">{team.total}</div>
+                                        </article>
+                                    )
+                                })
+                            }
+                        </section>
                         
                     }
                 </>

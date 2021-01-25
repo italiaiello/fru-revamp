@@ -351,6 +351,14 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
+.table-row {
+  display: table-row;
+  width: 70%;
+}
+
+.table-cell {
+  display: table-cell;
+}
 /* Team Details */
 
 .team-details-header {
