@@ -6,8 +6,10 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 
 const LeagueTable = ({ leagueId, leagueName }) => {
 
-    const [selectedSeason, setSelectedSeason] = useState('2020-2021')
-    const [isLoading, data, error] = useDataFetch(`https://www.divesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
+    console.log(leagueId, leagueName)
+
+    const [selectedSeason, setSelectedSeason] = useState('2019-2020')
+    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])
 
@@ -24,7 +26,10 @@ const LeagueTable = ({ leagueId, leagueName }) => {
 
     const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-');
 
-    if (error) return <>Network Error</>
+    if (error) {
+        console.log(error)
+        return <>Network Error</>
+    }
 
     return (
         <section className="fru-section">
@@ -43,7 +48,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                         <section className="league-table">
                             <header className="table-row">
                                 <div className="table-cell">Pos</div>
-                                <div className="table-cell">Team</div>
+                                <div className="table-cell team-name-cell">Team</div>
                                 <div className="table-cell">MP</div>
                                 <div className="table-cell">W</div>
                                 <div className="table-cell">D</div>
@@ -63,7 +68,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                             onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
                                         >
                                             <div className="table-cell">{index + 1}</div>
-                                            <div className="table-cell">{team.name}</div>
+                                            <div className="table-cell team-name-cell">{team.name}</div>
                                             <div className="table-cell">{team.played}</div>
                                             <div className="table-cell">{team.win}</div>
                                             <div className="table-cell">{team.draw}</div>
