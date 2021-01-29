@@ -315,30 +315,22 @@ h1, h2, h3, h4 {
 }
 
 .league-table {
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
   border-collapse: collapse;
 }
 
 .league-table-row {
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   color: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  filter: drop-shadow(1px 1px 4px #353535);
+  margin-bottom: 10px;
 }
 
 .league-table-row td {
   padding: 5px 0;
-}
-
-.league-table-row:nth-child(odd) {
-  background-color: #44362c;
-}
-
-.league-table-row:nth-child(even) {
-  background-color: #6d5747;
 }
 
 .league-table-row:first-child {
@@ -350,7 +342,6 @@ h1, h2, h3, h4 {
 }
 
 .league-table-row:hover {
-  background-color: #121212;
   cursor: pointer;
 }
 
@@ -364,10 +355,23 @@ h1, h2, h3, h4 {
 .table-cell {
   display: table-cell;
   flex: 1;
+  background-color: white;
+  color: black;
+  padding: 20px 0;
 }
 
 .team-name-cell {
   flex: 2;
+}
+
+.curve-first-cell {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.curve-last-cell {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 /* Team Details */

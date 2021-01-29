@@ -67,7 +67,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                             className="league-table-row option" 
                                             onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
                                         >
-                                            <div className="table-cell">{index + 1}</div>
+                                            <div className="table-cell curve-first-cell">{index + 1}</div>
                                             <div className="table-cell team-name-cell">{team.name}</div>
                                             <div className="table-cell">{team.played}</div>
                                             <div className="table-cell">{team.win}</div>
@@ -76,7 +76,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                             <div className="table-cell">{team.goalsfor}</div>
                                             <div className="table-cell">{team.goalsagainst}</div>
                                             <div className="table-cell">{team.goalsdifference}</div>
-                                            <div className="table-cell">{team.total}</div>
+                                            <div className="table-cell curve-last-cell">{team.total}</div>
                                         </article>
                                     )
                                 })
