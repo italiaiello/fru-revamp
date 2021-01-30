@@ -325,7 +325,7 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  filter: drop-shadow(1px 1px 4px #353535);
+  filter: drop-shadow(1px 1px 3px #353535);
   margin-bottom: 10px;
 }
 
@@ -345,12 +345,21 @@ h1, h2, h3, h4 {
   cursor: pointer;
 }
 
+.league-table-row:hover .table-cell {
+  background-color: #E2B071;
+}
+
 .table-row {
   display: table-row;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
+.table-row > .table-cell {
+  background-color: white;
+}
+
 
 .table-cell {
   display: table-cell;
