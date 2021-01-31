@@ -98,6 +98,23 @@ h1, h2, h3, h4 {
   border: 1px solid rgb(138, 138, 138);
 }
 
+.submit-button {
+  width: 30%;
+  height: 60px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4D55E6;
+  color: white;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.submit-button:hover {
+  background-color: rgba(77, 85, 230, 0.9);
+}
+
 /* Entrance */
 
 .entrance-section {
@@ -110,22 +127,35 @@ h1, h2, h3, h4 {
   flex-wrap: wrap;
 }
 
-#welcome-message {
-  position: absolute;
-  top: 20px;
+.entrance-panel {
+  width: 50%;
+  height: 100vh;
+  background-color: #E2B071;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-#welcome-message h2 {
+.welcome-message {
+  width: 80%;
+}
+
+.welcome-message h2 {
   font-size: 2rem;
 }
 
+.welcome-message p {
+  font-size: 1.3rem;
+}
+
 .entrance-figure {
-  width: 30%;
+  width: 70%;
   margin: 0;
 }
 
 .entrance-article {
-  width: 40%;
+  width: 50%;
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -139,9 +169,17 @@ h1, h2, h3, h4 {
   width: 50%;
   height: 80px;
   border-radius: 20px;
-  background-color: #4D55E6;
+  background-color: #E2B071;
   font-size: 1.2rem;
   color: white;
+}
+
+.entrance-option {
+  color: black;
+}
+
+.entrance-option:hover {
+  color: #af8858;
 }
 
 /* Sign In */
@@ -160,23 +198,6 @@ h1, h2, h3, h4 {
   top: 10px;
   font-size: 2rem;
   color: #4D55E6;
-}
-
-.submit-button {
-  width: 30%;
-  height: 60px;
-  border: none;
-  border-radius: 5px;
-  background-color: #4D55E6;
-  color: white;
-  cursor: pointer;
-  transition: all .2s ease-in-out;
-  margin-top: 20px;
-  font-size: 1.2rem;
-}
-
-.submit-button:hover {
-  background-color: rgba(77, 85, 230, 0.9);
 }
 
 /* Register */
@@ -359,7 +380,6 @@ h1, h2, h3, h4 {
 .table-row > .table-cell {
   background-color: white;
 }
-
 
 .table-cell {
   display: table-cell;
