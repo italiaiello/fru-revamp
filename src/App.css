@@ -128,7 +128,7 @@ h1, h2, h3, h4 {
 }
 
 .entrance-panel {
-  width: 50%;
+  width: 40%;
   height: 100vh;
   background-color: #E2B071;
   display: flex;
@@ -155,7 +155,7 @@ h1, h2, h3, h4 {
 }
 
 .entrance-article {
-  width: 50%;
+  width: 60%;
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -166,20 +166,20 @@ h1, h2, h3, h4 {
 }
 
 .entrance-button {
-  width: 50%;
+  width: 40%;
   height: 80px;
   border-radius: 20px;
-  background-color: #E2B071;
+  background-color: #4D55E6;
   font-size: 1.2rem;
   color: white;
 }
 
 .entrance-option {
-  color: black;
+  color: #4D55E6;
 }
 
 .entrance-option:hover {
-  color: #af8858;
+  color: black;
 }
 
 /* Sign In */
@@ -379,6 +379,8 @@ h1, h2, h3, h4 {
 
 .table-row > .table-cell {
   background-color: white;
+  color: #E2B071;
+  font-weight: bold;
 }
 
 .table-cell {

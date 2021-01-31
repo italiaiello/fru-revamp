@@ -11,7 +11,7 @@ const Entrance = () => {
             <article className="entrance-panel">
                 <article className="welcome-message">
                     <h2>Welcome to Football Round-Up!</h2>
-                    <p>Stay up-to-date on the best sport in the world</p>
+                    <p>Stay up-to-date with the best sport in the world</p>
                 </article>
                 <figure className="entrance-figure">
                     <img src={Fans} alt="Fans" className="responsive-img" />
