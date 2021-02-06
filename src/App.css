@@ -128,9 +128,9 @@ h1, h2, h3, h4 {
 }
 
 .entrance-panel {
-  width: 40%;
+  width: 50%;
   height: 100vh;
-  background-color: #E2B071;
+  background-color: #ebebeb;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -155,7 +155,7 @@ h1, h2, h3, h4 {
 }
 
 .entrance-article {
-  width: 60%;
+  width: 50%;
   height: 80vh;
   display: flex;
   flex-direction: column;
