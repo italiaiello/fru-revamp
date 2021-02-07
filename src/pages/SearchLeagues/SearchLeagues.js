@@ -30,7 +30,7 @@ const SearchLeagues = ({ setSelectedLeagueDetails }) => {
                 ?
                 <Loading message="Loading leagues..." />
                 :
-                <section className='fru-section'>
+                <section className="fru-section search-leagues">
                     <h2>Football Round-Up</h2>
                     <h3>Select a league</h3>
                     <SearchBar data={leaguesData} setData={setFilteredLeagues} />

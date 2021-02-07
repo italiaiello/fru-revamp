@@ -43,7 +43,9 @@ const LeagueCard = ({ leagueId, leagueName, setSelectedLeagueDetails }) => {
                 </article>
 
             }
-            <p className="league-name" data-details={leagueDetails}>{leagueName}</p>
+            <article className="league-name-container">
+                <p className="league-name" data-details={leagueDetails}>{leagueName}</p>
+            </article>
         </article>
     )
 }
