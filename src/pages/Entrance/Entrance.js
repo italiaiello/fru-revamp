@@ -8,7 +8,7 @@ const Entrance = () => {
     
     return (
         <section className="fru-section entrance-section">
-            <article className="entrance-panel">
+            <article className="entrance-message">
                 <article className="welcome-message">
                     <h2>Welcome to Football Round-Up!</h2>
                     <p>Stay up-to-date with the best sport in the world</p>
@@ -17,6 +17,7 @@ const Entrance = () => {
                     <img src={Fans} alt="Fans" className="responsive-img" />
                 </figure>
             </article>
+            <hr className="entrance-divider" />
             <article className="entrance-article">
                 <button className="btn submit-button entrance-button option" onClick={() => history.push("/sign-in")}>Sign In</button>
                 <hr className="divider"></hr>
