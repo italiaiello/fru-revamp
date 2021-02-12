@@ -8,7 +8,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
 
     console.log(leagueId, leagueName)
 
-    const [selectedSeason, setSelectedSeason] = useState('2019-2020')
+    const [selectedSeason, setSelectedSeason] = useState('2020-2021')
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])
@@ -32,7 +32,7 @@ const LeagueTable = ({ leagueId, leagueName }) => {
     }
 
     return (
-        <section className="fru-section">
+        <section className="fru-section league-table-section">
             {
                 isLoading || !leagueTable ?
                 <Loading message={"Loading league table..."} />
@@ -60,23 +60,26 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                             </header>
                             {
                                 leagueTable.map((team, index) => {
-                                    const formattedTeamName = team.name.toLowerCase().split(' ').join('-')
+                                    if (index === 0) {
+                                        console.log(team.strTeam);
+                                    }
+                                    const formattedTeamName = team.strTeam.toLowerCase().split(' ').join('-')
                                     const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-')
                                     return (
-                                        <article key={team.teamid} 
+                                        <article key={team.idTeam} 
                                             className="league-table-row option" 
                                             onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
                                         >
-                                            <div className="table-cell curve-first-cell">{index + 1}</div>
-                                            <div className="table-cell team-name-cell">{team.name}</div>
-                                            <div className="table-cell">{team.played}</div>
-                                            <div className="table-cell">{team.win}</div>
-                                            <div className="table-cell">{team.draw}</div>
-                                            <div className="table-cell">{team.loss}</div>
-                                            <div className="table-cell">{team.goalsfor}</div>
-                                            <div className="table-cell">{team.goalsagainst}</div>
-                                            <div className="table-cell">{team.goalsdifference}</div>
-                                            <div className="table-cell curve-last-cell">{team.total}</div>
+                                            <div className="table-cell curve-first-cell">{team.intRank}</div>
+                                            <div className="table-cell team-name-cell">{team.strTeam}</div>
+                                            <div className="table-cell">{team.intPlayed}</div>
+                                            <div className="table-cell">{team.intWin}</div>
+                                            <div className="table-cell">{team.intDraw}</div>
+                                            <div className="table-cell">{team.intLoss}</div>
+                                            <div className="table-cell">{team.intGoalsFor}</div>
+                                            <div className="table-cell">{team.intGoalsAgainst}</div>
+                                            <div className="table-cell">{team.intGoalDifference}</div>
+                                            <div className="table-cell curve-last-cell">{team.intPoints}</div>
                                         </article>
                                     )
                                 })
