@@ -1,10 +1,10 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
 import Fans from '../../assets/images/fans.svg'
+import { useHistoryUpdate } from '../../ThemeContext'
 
 const Entrance = () => {
 
-    let history = useHistory();
+    const updateHistory = useHistoryUpdate()
     
     return (
         <section className="fru-section entrance-section">
@@ -19,11 +19,11 @@ const Entrance = () => {
                     <p>Stay up-to-date with the best sport in the world</p>
                 </article>
                 <article className="entrance-buttons">
-                    <button className="btn entrance-button option" onClick={() => history.push("/sign-in")}>Sign In</button>
-                    <button className="btn alternate-button entrance-button option" onClick={() => history.push("/register")}>Register</button>
+                    <button className="btn entrance-button option" onClick={() => updateHistory("/sign-in")}>Sign In</button>
+                    <button className="btn alternate-button entrance-button option" onClick={() => updateHistory("/register")}>Register</button>
                 </article>
                 <hr className="divider"></hr>
-                <p className="alternate-option entrance-option" onClick={() => history.push("/leagues")}>Continue as a Guest</p>
+                <p className="alternate-option entrance-option" onClick={() => updateHistory("/leagues")}>Continue as a Guest</p>
             </article>
         </section>
     )
