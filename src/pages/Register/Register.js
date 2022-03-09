@@ -6,7 +6,7 @@ import { useDataFetch } from '../../hooks/useDataFetch';
 
 const Register = () => {
 
-    const [ data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/1/search_all_leagues.php?s=Soccer', "no-loading");
+    const [ data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/50130162/search_all_leagues.php?s=Soccer', "no-loading");
 
     const [leagues, setLeagues] = useState([])
     const [teams, setTeams] = useState([])
