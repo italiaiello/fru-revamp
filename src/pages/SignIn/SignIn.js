@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 const SignIn = () => {
+
+    let history = useHistory()
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,7 +23,8 @@ const SignIn = () => {
 
     const onSubmitSignIn = e => {
         e.preventDefault();
-        console.log(email, password);
+        history.push("/search-competitions")
+        
     }
 
     

@@ -4,9 +4,9 @@ import Loading from '../../components/Loading/Loading'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useLeaguesFetch } from '../../hooks/useLeaguesFetch'
 
-const SearchLeagues = ({ setSelectedLeagueDetails }) => {
+const SearchLeagues = () => {
 
-    const [ isLoading, leaguesData, error ] = useLeaguesFetch('https://www.thesportsdb.com/api/v1/json/1/all_leagues.php')
+    const [ isLoading, leaguesData, error ] = useLeaguesFetch('https://www.thesportsdb.com/api/v1/json/50130162/all_leagues.php')
 
     const [filteredLeagues, setFilteredLeagues] = useState([])
 
@@ -14,6 +14,7 @@ const SearchLeagues = ({ setSelectedLeagueDetails }) => {
         let isMounted = true
         if (leaguesData && isMounted) {
             setFilteredLeagues(leaguesData)
+            console.log(leaguesData)
         }
 
         return function cleanup() {
@@ -34,7 +35,7 @@ const SearchLeagues = ({ setSelectedLeagueDetails }) => {
                     <h2>Football Round-Up</h2>
                     <h3>Select a league</h3>
                     <SearchBar data={leaguesData} setData={setFilteredLeagues} />
-                    <Leagues leagues={filteredLeagues} setSelectedLeagueDetails={setSelectedLeagueDetails} />
+                    <Leagues leagues={filteredLeagues} />
                 </section>
             }
         </>

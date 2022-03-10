@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import Dropdown from '../../components/Dropdown/Dropdown'
 import Loading from '../../components/Loading/Loading'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
-const LeagueTable = ({ leagueId, leagueName }) => {
+const LeagueTable = () => {
 
-    console.log(leagueId, leagueName)
+    const params = useParams();
+    const formattedLeagueName = params.league.split('-').map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`).join(' ')
 
     const [selectedSeason, setSelectedSeason] = useState('2020-2021')
-    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookuptable.php?l=${leagueId}&s=${selectedSeason}`)
+    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookuptable.php?l=${params.leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])
 
@@ -24,8 +25,6 @@ const LeagueTable = ({ leagueId, leagueName }) => {
 
     let history = useHistory();
 
-    const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-');
-
     if (error) {
         console.log(error)
         return <>Network Error</>
@@ -38,8 +37,8 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                 <Loading message={"Loading league table..."} />
                 :
                 <>
-                    <h2>{leagueName}</h2>
-                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${formattedLeagueName}/details`)}>Learn More</button>
+                    <h2>{formattedLeagueName}</h2>
+                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/details`)}>Learn More</button>
                     <br />
                     <br />
                     <Dropdown dropdownOptions={["2020-2021", "2019-2020", "2018-2019", "2017-2018"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
@@ -64,11 +63,10 @@ const LeagueTable = ({ leagueId, leagueName }) => {
                                         console.log(team.strTeam);
                                     }
                                     const formattedTeamName = team.strTeam.toLowerCase().split(' ').join('-')
-                                    const formattedLeagueName = leagueName.toLowerCase().split(' ').join('-')
                                     return (
                                         <article key={team.idTeam} 
                                             className="league-table-row option" 
-                                            onClick={() => history.push(`/search-competitions/${formattedLeagueName}/${formattedTeamName}/${team.teamid}`)}
+                                            onClick={() => history.push(`/search-competitions/${params.league}/${formattedTeamName}/${team.teamid}`)}
                                         >
                                             <div className="table-cell curve-first-cell">{team.intRank}</div>
                                             <div className="table-cell team-name-cell">{team.strTeam}</div>

@@ -1,17 +1,17 @@
 import React from 'react'
-import { useHistoryUpdate } from '../../ThemeContext'
+import { useHistory } from 'react-router-dom'
 
 const FormHeader = ({ currentForm }) => {
 
-    const updateHistory = useHistoryUpdate()
+    let history = useHistory()
 
     return (
         <header className="form-header">
             {
                 currentForm === "SignIn" ?
-                <p>Don't have an account? <span className="form-redirection" onClick={() => updateHistory("/register")}>Register Now</span></p>
+                <p>Don't have an account? <span className="form-redirection" onClick={() => history.push("/register")}>Register Now</span></p>
                 :
-                <p>Already have an account? <span className="form-redirection" onClick={() => updateHistory("/sign-in")}>Sign In</span></p>
+                <p>Already have an account? <span className="form-redirection" onClick={() => history.push("/sign-in")}>Sign In</span></p>
             }
         </header>
     )

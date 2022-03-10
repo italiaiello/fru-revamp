@@ -1,15 +1,19 @@
 import React, {useState, useEffect} from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useThemeContext } from '../../ThemeContext'
 
-const LeagueCard = ({ leagueId, leagueName, setSelectedLeagueDetails }) => {
+const LeagueCard = ({ leagueId, leagueName }) => {
 
     const [leagueBadge, setLeagueBadge] = useState('')
     const [leagueDetails, setLeagueDetails] = useState({})
+
+    const { setSelectedLeague } = useThemeContext()
     
     const getLogo = (id) => {
-        fetch(`https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id=${id}`)
+        fetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupleague.php?id=${id}`)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 setLeagueBadge(`${data.leagues[0].strBadge}/preview`)
                 setLeagueDetails(data.leagues[0])
             })
@@ -26,8 +30,8 @@ const LeagueCard = ({ leagueId, leagueName, setSelectedLeagueDetails }) => {
 
     const onLeagueSelect = e => {
         const formattedLeague = leagueDetails.strLeague.toLowerCase().split(' ').join('-')
-        setSelectedLeagueDetails(leagueDetails)
-        history.push(`/search-competitions/${formattedLeague}`)
+        setSelectedLeague(leagueDetails)
+        history.push(`/search-competitions/${formattedLeague}/${leagueId}`)
     }
 
     return (

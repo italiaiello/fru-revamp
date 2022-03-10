@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 import Socials from '../../components/Socials/Socials'
+import { useThemeContext } from '../../ThemeContext'
 
-const LeagueDetails = ({ leagueDetails }) => {
+const LeagueDetails = () => {
 
-    console.log(leagueDetails)
+    const { selectedLeague } = useThemeContext()
 
     const [isImageLoaded, setIsImageLoaded] = useState(false)
 
     return (
         <section className="fru-section">
-            <h2>{leagueDetails.strLeague}</h2>
+            <h2>{selectedLeague.strLeague}</h2>
             <article className="league-badge-and-trophy">
                 <article className="badge-trophy-container">
                     <figure className="badge">
                         <img 
-                            src={`${leagueDetails.strBadge}/preview`} 
-                            alt={`${leagueDetails.strLeague}'s Badge`} 
+                            src={`${selectedLeague.strBadge}/preview`} 
+                            alt={`${selectedLeague.strLeague}'s Badge`} 
                             className="responsive-img"
                         />
                     </figure>
@@ -27,7 +28,7 @@ const LeagueDetails = ({ leagueDetails }) => {
                             null
                             :
                             (
-                                leagueDetails.strTrophy ?
+                                selectedLeague.strTrophy ?
                                 (
                                     <div style={{margin: '0 auto'}} className="no-image responsive-img">
                                         Loading trophy...
@@ -44,8 +45,8 @@ const LeagueDetails = ({ leagueDetails }) => {
                         {
                             <img 
                                 style={isImageLoaded ? {} : {display: 'none'}}
-                                src={leagueDetails.strTrophy} 
-                                alt={`${leagueDetails.strLeague}'s Trophy`}
+                                src={selectedLeague.strTrophy} 
+                                alt={`${selectedLeague.strLeague}'s Trophy`}
                                 className="responsive-img"
                                 onLoad={() => setIsImageLoaded(true)}
                             />
@@ -54,14 +55,14 @@ const LeagueDetails = ({ leagueDetails }) => {
                     </figure>
                 </article>
             </article>
-            <p className="league-desc desc-text white-space">{leagueDetails.strDescriptionEN}</p>
+            <p className="league-desc desc-text white-space">{selectedLeague.strDescriptionEN}</p>
             <hr className="divider" />
             <Socials 
-                name={leagueDetails.strLeague}
-                facebookUrl={leagueDetails.strFacebook}
-                instagramUrl={leagueDetails.strInstagram}
-                twitterUrl={leagueDetails.strTwitter}
-                youtubeUrl={leagueDetails.strYoutube}
+                name={selectedLeague.strLeague}
+                facebookUrl={selectedLeague.strFacebook}
+                instagramUrl={selectedLeague.strInstagram}
+                twitterUrl={selectedLeague.strTwitter}
+                youtubeUrl={selectedLeague.strYoutube}
             />
         </section>
     )

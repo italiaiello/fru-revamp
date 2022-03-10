@@ -13,7 +13,6 @@ const Leagues = ({ leagues, setSelectedLeagueDetails }) => {
                     return <LeagueCard  key={league.idLeague} 
                                         leagueId={league.idLeague} 
                                         leagueName={league.strLeague}
-                                        setSelectedLeagueDetails={setSelectedLeagueDetails}
                             />
                 })
             }

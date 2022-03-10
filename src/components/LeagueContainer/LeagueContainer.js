@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     Switch,
     Route
@@ -10,21 +10,19 @@ import TeamDetails from '../../pages/TeamDetails/TeamDetails';
 
 const LeagueContainer = () => {
 
-    const [selectedLeagueDetails, setSelectedLeagueDetails] = useState({})
-
     return (
         <section className="fru-section">
             <Switch>
                 <Route exact path={"/search-competitions"}>
-                    <SearchLeagues setSelectedLeagueDetails={setSelectedLeagueDetails} />
+                    <SearchLeagues />
                 </Route>
-                <Route exact path={`/search-competitions/:selectedLeague`}>
-                    <LeagueTable leagueId={selectedLeagueDetails.idLeague} leagueName={selectedLeagueDetails.strLeague} />
+                <Route exact path={`/search-competitions/:league/:leagueId`}>
+                    <LeagueTable />
                 </Route>
-                <Route path={`/search-competitions/:selectedLeague/details`}>
-                    <LeagueDetails leagueDetails={selectedLeagueDetails} />
+                <Route path={`/search-competitions/:league/details`}>
+                    <LeagueDetails />
                 </Route>
-                <Route path={`/search-competitions/:selectedLeague/:selectedTeam/:teamId`}>
+                <Route path={`/search-competitions/:league/:team/:teamId`}>
                     <TeamDetails />
                 </Route>
             </Switch>
