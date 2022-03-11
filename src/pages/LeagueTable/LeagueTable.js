@@ -7,6 +7,8 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 const LeagueTable = () => {
 
     const params = useParams();
+    let history = useHistory();
+
     const formattedLeagueName = params.league.split('-').map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`).join(' ')
 
     const [selectedSeason, setSelectedSeason] = useState('2020-2021')
@@ -23,7 +25,6 @@ const LeagueTable = () => {
         }
     }, [data])
 
-    let history = useHistory();
 
     if (error) {
         console.log(error)
@@ -38,7 +39,7 @@ const LeagueTable = () => {
                 :
                 <>
                     <h2>{formattedLeagueName}</h2>
-                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/details`)}>Learn More</button>
+                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>Learn More</button>
                     <br />
                     <br />
                     <Dropdown dropdownOptions={["2020-2021", "2019-2020", "2018-2019", "2017-2018"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
