@@ -67,7 +67,7 @@ const LeagueTable = () => {
                                     return (
                                         <article key={team.idTeam} 
                                             className="league-table-row option" 
-                                            onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/${formattedTeamName}/${leagueTable[index].idTeam}`)}
+                                            onClick={() => history.push(`/search-competitions/${params.league}/${formattedTeamName}/${leagueTable[index].idTeam}`)}
                                         >
                                             <div className="table-cell curve-first-cell">{team.intRank}</div>
                                             <div className="table-cell team-name-cell">{team.strTeam}</div>
