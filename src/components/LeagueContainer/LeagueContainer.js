@@ -22,7 +22,7 @@ const LeagueContainer = () => {
                 <Route path={`/search-competitions/:league/:leagueId/details`}>
                     <LeagueDetails />
                 </Route>
-                <Route path={`/search-competitions/:league/:team/:teamId`}>
+                <Route path={`/search-competitions/:league/:leagueId/:team/:teamId`}>
                     <TeamDetails />
                 </Route>
             </Switch>

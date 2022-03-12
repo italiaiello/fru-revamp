@@ -9,7 +9,7 @@ const TeamDetails = () => {
 
     const { teamId } = useParams()
 
-    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=${teamId}`)
+    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=${teamId}`)
 
     const [teamDetails, setTeamDetails] = useState({})
 
@@ -21,8 +21,6 @@ const TeamDetails = () => {
             console.log(data)
         }
     }, [data])
-
-    console.log(teamDetails)
 
     const numberWithCommas = (number) => {
         return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
