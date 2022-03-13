@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
 import Modal from '../../components/Modal/Modal'
 import Socials from '../../components/Socials/Socials'
+import TeamPlayersAndManager from '../../components/TeamPlayersAndManager/TeamPlayersAndManager'
 import { useDataFetch } from '../../hooks/useDataFetch'
 
 const TeamDetails = () => {
@@ -60,6 +61,7 @@ const TeamDetails = () => {
                         </article>
                     </article>
                     <p className="team-description desc-text white-space">{teamDetails.strDescriptionEN}</p>
+                    <TeamPlayersAndManager manager={teamDetails.strManager} teamId={teamId} />
                     <hr className="divider" />
                     <Socials    
                         name={teamDetails.strTeam} 
