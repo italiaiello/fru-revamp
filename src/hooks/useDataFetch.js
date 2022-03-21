@@ -12,7 +12,6 @@ export const useDataFetch = (url, toggleLoading) => {
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             setIsLoading(false)
             setData(data)
         })

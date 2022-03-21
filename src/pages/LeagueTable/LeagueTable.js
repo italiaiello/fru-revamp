@@ -11,7 +11,7 @@ const LeagueTable = () => {
 
     const formattedLeagueName = params.league.split('-').map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`).join(' ')
 
-    const [selectedSeason, setSelectedSeason] = useState('2020-2021')
+    const [selectedSeason, setSelectedSeason] = useState('2021-2022')
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookuptable.php?l=${params.leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])

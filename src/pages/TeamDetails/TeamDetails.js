@@ -8,7 +8,7 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 
 const TeamDetails = () => {
 
-    const { teamId } = useParams()
+    const { league, team, teamId } = useParams()
 
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=${teamId}`)
 
@@ -19,7 +19,6 @@ const TeamDetails = () => {
     useEffect(() => {
         if (data) {
             setTeamDetails(data.teams[0])
-            console.log(data)
         }
     }, [data])
 
@@ -29,7 +28,10 @@ const TeamDetails = () => {
 
     const toggleModal = (showModal) => setShowModal(showModal)
 
-    if (error) return <>Network Error</>
+    if (error) {
+        console.log(error)
+        return <>Network Error</>
+    }
 
     return (
         <section className="fru-section">
@@ -61,7 +63,7 @@ const TeamDetails = () => {
                         </article>
                     </article>
                     <p className="team-description desc-text white-space">{teamDetails.strDescriptionEN}</p>
-                    <TeamPlayersAndManager manager={teamDetails.strManager} teamId={teamId} />
+                    <TeamPlayersAndManager league={league} team={team} />
                     <hr className="divider" />
                     <Socials    
                         name={teamDetails.strTeam} 

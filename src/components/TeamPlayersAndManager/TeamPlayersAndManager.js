@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { useDataFetch } from '../../hooks/useDataFetch';
 import Loading from '../Loading/Loading';
 import './TeamPlayersAndManager.scss'
 
-const TeamPlayersAndManager = ({ teamId }) => {
+const TeamPlayersAndManager = ({ league, team }) => {
 
-    const [isLoading, players, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookup_all_players.php?id=${teamId}`)
+    let history = useHistory()
+
+    const [isLoading, players, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/searchplayers.php?t=${team}`)
 
     const [manager, setManager] = useState(null)
     const [goalkeepers, setGoalkeepers] = useState([])
     const [defenders, setDefenders] = useState([])
     const [midfielders, setMidfielders] = useState([])
+    const [wingers, setWingers] = useState([])
     const [forwards, setForwards] = useState([])
 
     useEffect(() => {
         if (players && players.player) {
             setManager(players.player.filter(player => player.strPosition.toLowerCase() === "manager"))
             setGoalkeepers(players.player.filter(player => player.strPosition.toLowerCase() === "goalkeeper"))
-            setDefenders(players.player.filter(player => player.strPosition.toLowerCase() === "defender" || player.strPosition.toLowerCase() === "centre back" || player.strPosition.toLowerCase() === "full-back"))
-            setMidfielders(players.player.filter(player => player.strPosition.toLowerCase() === "midfielder" || player.strPosition.toLowerCase() === "winger"))
+            setDefenders(players.player.filter(player => player.strPosition.toLowerCase() === "defender" || player.strPosition.toLowerCase().includes("back")))
+            setMidfielders(players.player.filter(player => player.strPosition.toLowerCase().includes("midfielder")))
+            setWingers(players.player.filter(player => player.strPosition.toLowerCase().includes("wing")))
             setForwards(players.player.filter(player => player.strPosition.toLowerCase() === "forward"))
         }
 
@@ -31,8 +36,6 @@ const TeamPlayersAndManager = ({ teamId }) => {
 
     const getExistingImage = (thumb, cutout, render) => {
 
-        console.log(thumb, cutout, render)
-
         if (cutout) {
             return cutout
         } else if (thumb) {
@@ -42,6 +45,11 @@ const TeamPlayersAndManager = ({ teamId }) => {
         } else {
             return null
         }
+    }
+
+    const onPlayerSelect = (playerName, playerId) => {
+        const formattedName = playerName.toLowerCase().split(' ').join('-')
+        history.push(`/search-competitions/${league}/${team}/${formattedName}/${playerId}`)
     }
 
     return (
@@ -75,11 +83,11 @@ const TeamPlayersAndManager = ({ teamId }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     goalkeepers.map(keeper => (
-                                        <article className="player-section__player-card-container--player-card">
+                                        <article key={keeper.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(keeper.strPlayer, keeper.idPlayer)}>
                                             {
                                                 getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender) !== null &&
                                                 <figure>
-                                                    <img src={getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender)} alt={keeper.strPlayer} alt={keeper.strPlayer} />
+                                                    <img src={getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender)} alt={keeper.strPlayer} />
                                                 </figure>
                                             }
                                             <p>{keeper.strPlayer}</p>
@@ -93,7 +101,7 @@ const TeamPlayersAndManager = ({ teamId }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     defenders.map(defender => (
-                                        <article className="player-section__player-card-container--player-card">
+                                        <article key={defender.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(defender.strPlayer, defender.idPlayer)}>
                                             {
                                                 getExistingImage(defender.strThumb, defender.strCutout, defender.strRender) !== null &&
                                                 <figure>
@@ -111,7 +119,7 @@ const TeamPlayersAndManager = ({ teamId }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     midfielders.map(midfielder => (
-                                        <article className="player-section__player-card-container--player-card">
+                                        <article key={midfielder.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(midfielder.strPlayer, midfielder.idPlayer)}>
                                             {
                                                 getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender) !== null &&
                                                 <figure>
@@ -125,11 +133,29 @@ const TeamPlayersAndManager = ({ teamId }) => {
                             </article>
                         </article>
                         <article>
+                            <h2>Wingers</h2>
+                            <article className="player-section__player-card-container">
+                                {
+                                    wingers.map(winger => (
+                                        <article key={winger.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(winger.strPlayer, winger.idPlayer)}>
+                                            {
+                                                getExistingImage(winger.strThumb, winger.strCutout, winger.strRender) !== null &&
+                                                <figure>
+                                                    <img src={getExistingImage(winger.strThumb, winger.strCutout, winger.strRender)} alt={winger.strPlayer} />
+                                                </figure>
+                                            }
+                                            <p>{winger.strPlayer}</p>
+                                        </article>
+                                    ))
+                                }
+                            </article>
+                        </article>
+                        <article>
                             <h2>Forwards</h2>
                             <article className="player-section__player-card-container">
                                 {
                                     forwards.map(forward => (
-                                        <article className="player-section__player-card-container--player-card">
+                                        <article key={forward.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(forward.strPlayer, forward.idPlayer)}>
                                             {
                                                 getExistingImage(forward.strThumb, forward.strCutout, forward.strRender) !== null &&
                                                 <figure>
