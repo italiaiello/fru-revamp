@@ -63,7 +63,7 @@ const TeamDetails = () => {
                         </article>
                     </article>
                     <p className="team-description desc-text white-space">{teamDetails.strDescriptionEN}</p>
-                    <TeamPlayersAndManager league={league} team={team} />
+                    <TeamPlayersAndManager league={league} team={team.split('-').join(' ')} />
                     <hr className="divider" />
                     <Socials    
                         name={teamDetails.strTeam} 

@@ -8,6 +8,8 @@ const TeamPlayersAndManager = ({ league, team }) => {
 
     let history = useHistory()
 
+    console.log(team)
+
     const [isLoading, players, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/searchplayers.php?t=${team}`)
 
     const [manager, setManager] = useState(null)
