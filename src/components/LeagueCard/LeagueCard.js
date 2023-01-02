@@ -13,7 +13,6 @@ const LeagueCard = ({ leagueId, leagueName }) => {
         fetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupleague.php?id=${id}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setLeagueBadge(`${data.leagues[0].strBadge}/preview`)
                 setLeagueDetails(data.leagues[0])
             })
