@@ -22,10 +22,6 @@ export const useDataFetch = (url, toggleLoading) => {
             setError(err)
         })
     }, [url])
-
-    if (toggleLoading === 'no-loading') {
-        return [ data, error ]
-    }
     
     return [ isLoading, data, error ];
 }

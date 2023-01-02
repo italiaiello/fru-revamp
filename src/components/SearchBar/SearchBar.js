@@ -17,7 +17,7 @@ const SearchBar = ({ data, setData }) => {
 
     return (
         <article className="search-bar">
-            <input className="fru-form-input" placeholder="Search competitions..." type="text" onChange={onSearchChange} value={search} />
+            <input className="fru-form-input search-bar-input" placeholder="Search competitions..." type="text" onChange={onSearchChange} value={search} />
         </article>
     )
 }
