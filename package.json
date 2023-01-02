@@ -39,6 +39,8 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
+    "react-error-overlay": "^6.0.9",
     "sass": "^1.49.9"
   }
 }
