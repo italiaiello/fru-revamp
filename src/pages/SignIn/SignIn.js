@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import Spinner from '../../components/Spinner/Spinner';
 
 const SignIn = () => {
 
@@ -10,6 +13,8 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const onEmailChange = e => {
         setEmail(e.target.value);
@@ -23,8 +28,16 @@ const SignIn = () => {
 
     const onSubmitSignIn = e => {
         e.preventDefault();
-        history.push("/search-competitions")
-        
+        setIsSubmitting(true)
+        signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            setIsSubmitting(false)
+            history.push("/search-competitions")
+        })
+        .catch((error) => {
+            console.log(error.message)
+            setIsSubmitting(false)
+        });
     }
 
     
@@ -33,13 +46,24 @@ const SignIn = () => {
         <section className="fru-section signin-section">
             <h2>Football Round-Up</h2>
             <form className="fru-form">
-                <input className="fru-form-input" placeholder="Email" type="email" onChange={onEmailChange} />
-                <input className="fru-form-input" placeholder="Password" type="password" onChange={onPasswordChange} />
+                <article className="fru-form-field-container">
+                    <label htmlFor="email">Email</label>
+                    <input id="email" className="fru-form-input" placeholder="Email" type="email" onChange={onEmailChange} />
+                </article>
+                <article className="fru-form-field-container">
+                    <label htmlFor="password">Password</label>
+                    <input id="password" className="fru-form-input" placeholder="Password" type="password" onChange={onPasswordChange} />
+                </article>
                 {
                     showErrorMessage &&
                     <ErrorMessage message={"Email or password is incorrect"} />
                 }
-                <button className="submit-button" onClick={onSubmitSignIn}>Sign In</button>
+                {
+                    isSubmitting ?
+                    <Spinner />
+                    :
+                    <button className="submit-button" onClick={onSubmitSignIn}>Sign In</button>
+                }
             </form>
         </section>
     )

@@ -1,100 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import Dropdown from '../../components/Dropdown/Dropdown';
+import React, { useState } from 'react'
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { fetchTeams } from '../../functions/fetchTeams';
-import { useDataFetch } from '../../hooks/useDataFetch';
+import { auth } from '../../firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useHistory } from 'react-router-dom'
+import Spinner from '../../components/Spinner/Spinner'
 
 const Register = () => {
 
-    const [ data, error ] = useDataFetch('https://www.thesportsdb.com/api/v1/json/50130162/search_all_leagues.php?s=Soccer', "no-loading");
+    let history = useHistory()
 
-    const [leagues, setLeagues] = useState([])
-    const [teams, setTeams] = useState([])
-
-    const [leagueDropdownOptions, setLeagueDropdownOptions] = useState([])
-    const [teamDropdownOptions, setTeamDropdownOptions] = useState([])
-
-    const [chosenLeague, setChosenLeague] = useState('')
-    const [chosenTeam, setChosenTeam] = useState('')
-
-    useEffect(() => {
-        if (data) {
-            setLeagues(data.countrys);
-            const options = data.countrys.map(league => league.strLeague);
-            setLeagueDropdownOptions(options);
-        }
-    }, [data])
-
-    useEffect(() => {
-        if (chosenLeague.length) {
-            fetchTeams(chosenLeague, setTeams, setTeamDropdownOptions);
-        }
-    }, [chosenLeague])
-
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-
     const [password, setPassword] = useState('');
     const [confirmedPassword, setConfirmedPassword] = useState('');
     
-    const [currentStep, setCurrentStep] = useState(0);
-
     const [errorMessage, setErrorMessage] = useState('')
     const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-    const onNameChange = e => {setName(e.target.value)}
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     const onEmailChange = e => {setEmail(e.target.value); setShowErrorMessage(false)}
     const onPasswordChange = e => {setPassword(e.target.value); setShowErrorMessage(false)}
     const onConfirmedPasswordChange = e => {setConfirmedPassword(e.target.value); setShowErrorMessage(false)}
-    const onLeagueChange = e => {setChosenLeague(e.target.value); setShowErrorMessage(false)}
-    const onTeamChange = e => {setChosenTeam(e.target.value); setShowErrorMessage(false)}
     
-    if (error) return <>Network error</>
-
-    const showCurrentStep = () => {
-        switch(currentStep) {
-            case 0:
-                return (
-                    <article className="step">
-                        <input className="fru-form-input" placeholder="Name" type="text" onChange={onNameChange} value={name}/>
-                        <input className="fru-form-input" placeholder="Email" type="email" onChange={onEmailChange} value={email}/>
-                    </article>
-                )
-            case 1:
-                return (
-                    <article className="step">
-                        <input className="fru-form-input" placeholder="Password" type="password" onChange={onPasswordChange} value={password} />
-                        <input className="fru-form-input" placeholder="Confirmed Password" type="password" onChange={onConfirmedPasswordChange} value={confirmedPassword} />
-                    </article>
-                )
-            case 2:
-                return (
-                    <article className="step">
-                        <Dropdown dropdownOptions={leagueDropdownOptions} prompt={"Please select a league"} onChangeFunction={onLeagueChange} />
-                        {
-                            teamDropdownOptions.length ?
-                            <Dropdown dropdownOptions={teamDropdownOptions} prompt={"Please select a team"} onChangeFunction={onTeamChange} />
-                            :
-                            null
-                        }
-                    </article>
-                )
-            default:
-                return (
-                    <article className="step">
-                        <p>Something went wrong. Step is unable to be shown.</p>
-                    </article>
-                )
-        }
-    }
-
     const isEmailValid = (e) => {
         e.preventDefault();
         var re = /^\S+@\S+[.][0-9a-z]+$/;
-        if (re.test(email)) {
-            setCurrentStep(currentStep + 1);
-            console.log('valid')
-        } else {
+        if (!re.test(email)) {
             setErrorMessage("Email is incorrect");
             setShowErrorMessage(true);
         }
@@ -102,42 +33,57 @@ const Register = () => {
 
     const checkPasswordsMatch = (e) => {
         e.preventDefault();
-        if (password === confirmedPassword) {
-            setCurrentStep(currentStep + 1);
-        } else {
+        if (password !== confirmedPassword) {
             setErrorMessage("Passwords do not match");
             setShowErrorMessage(true);
         }
-    };
+    }
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
-        if (!chosenLeague.length || !chosenTeam.length) {
-            setErrorMessage("Please select an option")
-            setShowErrorMessage(true)
-        } else {
-            setCurrentStep(0);
+        setIsSubmitting(true)
+
+        if (!isEmailValid || !checkPasswordsMatch) {
+            return
         }
 
-        console.log(leagues, teams)
+        createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            setIsSubmitting(false)
+            history.push("/search-competitions")
+        })
+        .catch((error) => {
+            console.log(error.message)
+            setIsSubmitting(false)
+        })
     }
-
-    const buttonFunctions = [isEmailValid, checkPasswordsMatch, onSubmitRegister];
-    const buttonNames = ['Next Step', 'Next Step', 'Register'];
 
     return (
         <section className="fru-section signin-section">
             <h2>Register for Football Round-Up</h2>
             <form className="fru-form">
-                <h4>Step {currentStep + 1} of 3</h4>
-                {
-                    showCurrentStep()
-                }
+                <article className="fru-form-field-container">
+                    <label htmlFor="email">Email</label>
+                    <input id="email" className="fru-form-input" placeholder="Email" type="email" onChange={onEmailChange} value={email}/>
+                </article>
+                <article className="fru-form-field-container">
+                    <label htmlFor="password">Password</label>
+                    <input id="password" className="fru-form-input" placeholder="Password" type="password" onChange={onPasswordChange} value={password} />
+                </article>
+                <article className="fru-form-field-container">
+                    <label htmlFor="confirm-password">Confirm Password</label>
+                    <input className="fru-form-input" placeholder="Confirmed Password" type="password" onChange={onConfirmedPasswordChange} value={confirmedPassword} />
+                </article>
                 {
                     showErrorMessage &&
                     <ErrorMessage message={errorMessage} />
                 }
-                <button className="submit-button" onClick={buttonFunctions[currentStep]}>{buttonNames[currentStep]}</button>
+                {
+                    isSubmitting ?
+                    <Spinner />
+                    :
+                    <button className="submit-button" onClick={onSubmitRegister}>Register</button>
+                }
             </form>
         </section>
     )
