@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
 import { usePlayerFetch } from '../../hooks/usePlayerFetch'
+import './PlayerDetails.scss'
 
 const PlayerDetails = () => {
     
@@ -24,62 +25,62 @@ const PlayerDetails = () => {
                 :
                 <>
                     <article>
-                        <article>
-                            <figure>
-                                <img src={playerDetails.strCutout} alt={playerDetails.strPlayer} />
+                        <article className="player-details__header">
+                            <figure className="player-details__header--figure">
+                                <img src={playerDetails.strCutout} alt={playerDetails.strPlayer} className="responsive-img" />
                             </figure>
-                            <p>{playerDetails.strPlayer}</p>
+                            <h2 className="player-details__header--name">{playerDetails.strPlayer}</h2>
                         </article>
-                        <article>
-                            <article className="player-details__info-box">
+                        <article className='player-details__info-box-container'>
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Age</h3>
                                 <p>{`${getPlayerAge(playerDetails.dateBorn)}`}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Height</h3>
-                                <p>{playerDetails.strHeight}</p>
+                                <p>{playerDetails.strHeight === "" ? "Unknown" : playerDetails.strHeight}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Weight</h3>
-                                <p>{playerDetails.strWeight}</p>
+                                <p>{playerDetails.strWeight === "" ? "Unknown" : playerDetails.strWeight}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Position</h3>
-                                <p>{playerDetails.strPosition}</p>
+                                <p>{playerDetails.strPosition === "" ? "Unknown" : playerDetails.strPosition}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Preferred Foot</h3>
-                                <p>{playerDetails.strSide}</p>
+                                <p>{playerDetails.strSide === "" ? "Unknown" : playerDetails.strSide}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Birth Location</h3>
-                                <p>{playerDetails.strBirthLocation}</p>
+                                <p>{playerDetails.strBirthLocation === "" ? "Unknown" : playerDetails.strBirthLocation}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Agent</h3>
-                                <p>{playerDetails.strAgent}</p>
+                                <p>{playerDetails.strAgent === "" ? "Unknown" : playerDetails.strAgent}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Wage</h3>
-                                <p>{playerDetails.strWage}</p>
+                                <p>{playerDetails.strWage  === "" ? "Unknown" : playerDetails.strWage}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Signing Fee</h3>
-                                <p>{playerDetails.strSigning}</p>
+                                <p>{playerDetails.strSigning  === "" ? "Unknown" : playerDetails.strSigning}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Shirt Number</h3>
-                                <p>{playerDetails.strNumber}</p>
+                                <p>{playerDetails.strNumber === "" ? "Unknown" : playerDetails.strNumber}</p>
                             </article>
-                            <article className="player-details__info-box">
+                            <article className="player-details__info-box-container--info-box">
                                 <h3>Nationality</h3>
-                                <p>{playerDetails.strNationality}</p>
+                                <p>{playerDetails.strNationality  === "" ? "Unknown" : playerDetails.strNationality}</p>
                             </article>
                         </article>
                     </article>
-                    <article className="player-details__info-box">
+                    <article className="player-details__about">
                         <h3>About {playerDetails.strPlayer}</h3>
-                        <p>{playerDetails.strDescriptionEN}</p>
+                        <p className="desc-text white-space">{playerDetails.strDescriptionEN}</p>
                     </article>
                 </>
             }

@@ -24,7 +24,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
             setManager(players.player.filter(player => player.strPosition.toLowerCase() === "manager"))
             setGoalkeepers(players.player.filter(player => player.strPosition.toLowerCase() === "goalkeeper"))
             setDefenders(players.player.filter(player => player.strPosition.toLowerCase() === "defender" || player.strPosition.toLowerCase().includes("back")))
-            setMidfielders(players.player.filter(player => player.strPosition.toLowerCase().includes("midfielder")))
+            setMidfielders(players.player.filter(player => player.strPosition.toLowerCase().includes("midfield")))
             setWingers(players.player.filter(player => player.strPosition.toLowerCase().includes("wing")))
             setForwards(players.player.filter(player => player.strPosition.toLowerCase() === "forward"))
         }
@@ -66,7 +66,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                         <article>
                             <h2>Manager</h2>
                             <article className="player-section__player-card-container">
-                                <article className="player-section__player-card-container--player-card">
+                                <article className="player-section__player-card-container--player-card option">
                                     {
                                         getExistingImage(manager[0].strThumb, manager[0].strCutout, manager[0].strRender) !== null &&
                                         <figure>
@@ -85,7 +85,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     goalkeepers.map(keeper => (
-                                        <article key={keeper.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(keeper.strPlayer, keeper.idPlayer)}>
+                                        <article key={keeper.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(keeper.strPlayer, keeper.idPlayer)}>
                                             {
                                                 getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender) !== null &&
                                                 <figure>
@@ -103,7 +103,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     defenders.map(defender => (
-                                        <article key={defender.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(defender.strPlayer, defender.idPlayer)}>
+                                        <article key={defender.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(defender.strPlayer, defender.idPlayer)}>
                                             {
                                                 getExistingImage(defender.strThumb, defender.strCutout, defender.strRender) !== null &&
                                                 <figure>
@@ -121,7 +121,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     midfielders.map(midfielder => (
-                                        <article key={midfielder.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(midfielder.strPlayer, midfielder.idPlayer)}>
+                                        <article key={midfielder.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(midfielder.strPlayer, midfielder.idPlayer)}>
                                             {
                                                 getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender) !== null &&
                                                 <figure>
@@ -139,7 +139,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     wingers.map(winger => (
-                                        <article key={winger.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(winger.strPlayer, winger.idPlayer)}>
+                                        <article key={winger.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(winger.strPlayer, winger.idPlayer)}>
                                             {
                                                 getExistingImage(winger.strThumb, winger.strCutout, winger.strRender) !== null &&
                                                 <figure>
@@ -157,7 +157,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
                             <article className="player-section__player-card-container">
                                 {
                                     forwards.map(forward => (
-                                        <article key={forward.idPlayer} className="player-section__player-card-container--player-card" onClick={() => onPlayerSelect(forward.strPlayer, forward.idPlayer)}>
+                                        <article key={forward.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(forward.strPlayer, forward.idPlayer)}>
                                             {
                                                 getExistingImage(forward.strThumb, forward.strCutout, forward.strRender) !== null &&
                                                 <figure>
