@@ -11,7 +11,12 @@ const LeagueTable = () => {
 
     const formattedLeagueName = params.league.split('-').map(word => `${word.charAt(0).toUpperCase()}${word.substring(1)}`).join(' ')
 
-    const [selectedSeason, setSelectedSeason] = useState('2022-2023')
+    const currentYear = new Date().getFullYear()
+    const currentSeason = `${currentYear - 1}-${currentYear}`
+    const listOfSeasons = [`${currentYear - 1}-${currentYear}`, `${currentYear - 2}-${currentYear - 1}`, `${currentYear - 3}-${currentYear - 2}`,
+    `${currentYear - 4}-${currentYear - 3}`, `${currentYear - 5}-${currentYear - 4}`, `${currentYear - 6}-${currentYear - 5}`]
+
+    const [selectedSeason, setSelectedSeason] = useState(currentSeason)
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookuptable.php?l=${params.leagueId}&s=${selectedSeason}`)
 
     const [leagueTable, setLeagueTable] = useState([])
@@ -42,7 +47,7 @@ const LeagueTable = () => {
                     <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>Learn More</button>
                     <br />
                     <br />
-                    <Dropdown dropdownOptions={["2021-2022", "2020-2021", "2019-2020", "2018-2019"]} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
+                    <Dropdown dropdownOptions={listOfSeasons} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
                     <h3>{`${selectedSeason} Season`}</h3>
                     {
                         <section className="league-table">
