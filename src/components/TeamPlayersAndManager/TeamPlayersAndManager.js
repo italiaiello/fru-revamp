@@ -4,11 +4,9 @@ import { useDataFetch } from '../../hooks/useDataFetch';
 import Loading from '../Loading/Loading';
 import './TeamPlayersAndManager.scss'
 
-const TeamPlayersAndManager = ({ league, team }) => {
+const TeamPlayersAndManager = ({ league, leagueId, team, urlTeam }) => {
 
     let history = useHistory()
-
-    console.log(team)
 
     const [isLoading, players, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/searchplayers.php?t=${team}`)
 
@@ -51,7 +49,7 @@ const TeamPlayersAndManager = ({ league, team }) => {
 
     const onPlayerSelect = (playerName, playerId) => {
         const formattedName = playerName.toLowerCase().split(' ').join('-')
-        history.push(`/search-competitions/${league}/${team}/${formattedName}/${playerId}`)
+        history.push(`/search-competitions/${league}/${leagueId}/${urlTeam}/${formattedName}/${playerId}`)
     }
 
     return (

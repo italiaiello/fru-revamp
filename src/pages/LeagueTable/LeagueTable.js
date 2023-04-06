@@ -44,8 +44,10 @@ const LeagueTable = () => {
                 :
                 <>
                     <h2>{formattedLeagueName}</h2>
-                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>League Details</button>
-                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/results`)}>Check Scores</button>
+                    <article className="league-details-button-container">
+                        <button className="league-results-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/results`)}>Check Scores</button>
+                        <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>League Details</button>
+                    </article>
                     <br />
                     <br />
                     <Dropdown dropdownOptions={listOfSeasons} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />
@@ -65,15 +67,12 @@ const LeagueTable = () => {
                                 <div className="table-cell">Pts</div>
                             </header>
                             {
-                                leagueTable.map((team, index) => {
-                                    if (index === 0) {
-                                        console.log(team.strTeam);
-                                    }
+                                leagueTable.map((team) => {
                                     const formattedTeamName = team.strTeam.toLowerCase().split(' ').join('-')
                                     return (
                                         <article key={team.idTeam} 
                                             className="league-table-row option" 
-                                            onClick={() => history.push(`/search-competitions/${params.league}/${formattedTeamName}/${leagueTable[index].idTeam}`)}
+                                            onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/${formattedTeamName}/details`)}
                                         >
                                             <div className="table-cell curve-first-cell">{team.intRank}</div>
                                             <div className="table-cell team-name-cell">{team.strTeam}</div>

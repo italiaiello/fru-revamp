@@ -8,30 +8,47 @@ const EventStatistics = () => {
 
     const {resultId} = useParams()
 
-    const [isLoading, statistics, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupeventstats.php?id=${resultId}`)
+    const [isLoadingStats, statistics, errorStats] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupeventstats.php?id=${resultId}`)
+    const [isLoadingEvent, event, errorEvent] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupevent.php?id=${resultId}`)
 
-    if (error) {
-        console.log(error)
+    if (errorStats) {
+        console.log(errorStats)
+        return <>Network Error</>
+    }
+
+    if (errorEvent) {
+        console.log(errorEvent)
         return <>Network Error</>
     }
     
     return (
         <section className="event-statistics">
             {
-                isLoading ?
+                isLoadingStats || isLoadingEvent ?
                 <Loading message={"Loading statistics..."} />
                 :
                 <>
+                    <figure className="event-statistics__figure">
+                        <img src={`${event?.events[0]?.strThumb}/preview`} alt={`${event?.events[0]?.strEvent} banner`} className="responsive-img" />
+                    </figure>
                     <h2>{statistics?.eventstats[0]?.strEvent}</h2>
                     <article className="event-statistics__stats-table">
+                        <article className="event-statistics__stats-table--row">
+                            <p>{event?.events[0]?.intHomeScore}</p>
+                            <p>Goals</p>
+                            <p>{event?.events[0]?.intAwayScore}</p>
+                        </article>
                         {
-                            statistics?.eventstats?.map(stat => (
-                                <article className="event-statistics__stats-table--row">
+                            statistics?.eventstats?.map(stat => {
+                                if (stat.strStat === "expected_goals") {
+                                    stat.strStat = "Expected Goals"
+                                }
+                                return <article className="event-statistics__stats-table--row">
                                     <p>{stat.intHome}</p>
                                     <p>{stat.strStat}</p>
                                     <p>{stat.intAway}</p>
                                 </article>
-                            ))
+                            })
                         }
                     </article>
                 </>

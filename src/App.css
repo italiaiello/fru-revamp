@@ -390,12 +390,23 @@ h1, h2, h3, h4 {
 
 /* League Table */
 
-.league-details-button {
-  width: 200px;
-  height: 50px;
-  border: none;
+.league-details-button, .league-results-button {
+  width: 20%;
+  min-width: 150px;
+  padding: 25px;
+  margin: 5px;
   border-radius: 10px;
+}
+
+.league-details-button {
+  border: 2px solid #634D32;
+  color: #634D32;
+  background-color: white;
+}
+
+.league-results-button {
   background-color: #E2B071;
+  border: 2px solid #E2B071;
   color: white;
 }
 
@@ -505,6 +516,18 @@ h1, h2, h3, h4 {
   margin-left: 0;
 }
 
+@media (width <= 600px) {
+  .team-details-header {
+    flex-direction: column;
+  }
+
+  .team-logo {
+    width: 50%;
+    margin: 0;
+    margin-top: 30px;
+  }
+}
+
 .summary {
   display: flex;
   justify-content: center;
@@ -524,6 +547,12 @@ h1, h2, h3, h4 {
   align-items: center;
   margin: 10px;
   border-radius: 10px;
+}
+
+@media (width <= 600px) {
+    .summary-box {
+      width: 90%;
+    }
 }
 
 .summary-box p {

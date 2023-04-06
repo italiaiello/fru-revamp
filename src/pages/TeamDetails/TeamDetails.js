@@ -8,11 +8,9 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 
 const TeamDetails = () => {
 
-    const { league, team } = useParams()
+    const { league, leagueId, team } = useParams()
 
     const strTeam = team.split('-').join('_')
-
-    console.log(strTeam)
 
     const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/searchteams.php?t=${strTeam}`)
 
@@ -67,7 +65,7 @@ const TeamDetails = () => {
                         </article>
                     </article>
                     <p className="team-description desc-text white-space">{teamDetails.strDescriptionEN}</p>
-                    <TeamPlayersAndManager league={league} team={team.split('-').join(' ')} />
+                    <TeamPlayersAndManager league={league} leagueId={leagueId} team={team.split('-').join(' ')} urlTeam={team} />
                     <hr className="divider" />
                     <Socials    
                         name={teamDetails.strTeam} 

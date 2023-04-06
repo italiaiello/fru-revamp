@@ -13,9 +13,29 @@
         flex-wrap: wrap;
 
         &--fixture {
-            width: 80%;
+            width: 30%;
             box-shadow: 1px 1px 4px #ccc;
             margin: 10px;
+            border-radius: 10px;
+            border-radius: 10px;
+
+            &__figure {
+                width: 100%;
+                margin: 0;
+
+                & img {
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
+                }
+            }
+
+            @media (width <= 600px) {
+                width: 90%;
+            }
+        }
+
+        @media (width <= 600px) {
+            width: 100%;
         }
     }
 }

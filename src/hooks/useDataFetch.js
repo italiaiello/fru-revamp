@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useDataFetch = (url, toggleLoading) => {
+export const useDataFetch = (url) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState();

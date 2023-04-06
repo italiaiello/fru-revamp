@@ -19,7 +19,7 @@ const LeagueDetails = () => {
         <section className="fru-section">
             {
                 isLoading || leagueDetails === undefined ?
-                <Loading message={'Loading team details...'} />
+                <Loading message={'Loading league details...'} />
                 :
                 <>
                     <h2>{leagueDetails.leagues[0].strLeague}</h2>

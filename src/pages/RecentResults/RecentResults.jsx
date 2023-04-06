@@ -28,6 +28,9 @@ const RecentResults = () => {
                         {
                             results?.events?.map(result => (
                                 <article className="recent-results__fixture-container--fixture option" onClick={() => history.push(`/search-competitions/${league}/${leagueId}/results/${result.idEvent}`)}>
+                                    <figure className="recent-results__fixture-container--fixture__figure">
+                                        <img src={`${result.strThumb}/preview`} alt={result.strEvent} className="responsive-img"/>
+                                    </figure>
                                     <h3>{`${result.strHomeTeam} ${result.intHomeScore} - ${result.intAwayScore} ${result.strAwayTeam}`}</h3>
                                 </article>
                             ))

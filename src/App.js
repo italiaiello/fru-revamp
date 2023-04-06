@@ -55,10 +55,10 @@ const App = () => {
                 <Route path={`/search-competitions/:league/:leagueId/results/:resultId`}>
                     <EventStatistics />
                 </Route>
-                <Route exact path={`/search-competitions/:league/:team/:teamId`}>
+                <Route exact path={`/search-competitions/:league/:leagueId/:team/details`}>
                     <TeamDetails />
                 </Route>
-                <Route exact path={`/search-competitions/:league/:team/:player/:playerId`}>
+                <Route exact path={`/search-competitions/:league/:leagueId/:team/:player/:playerId`}>
                     <PlayerDetails />
                 </Route>
             </Switch>
