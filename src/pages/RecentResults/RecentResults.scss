@@ -1,0 +1,21 @@
+.recent-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__fixture-container {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+
+        &--fixture {
+            width: 80%;
+            box-shadow: 1px 1px 4px #ccc;
+            margin: 10px;
+        }
+    }
+}

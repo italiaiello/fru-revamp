@@ -262,6 +262,7 @@ h1, h2, h3, h4 {
     -webkit-appearance: none;
     background-position-x: 95%;
   background-color: #fff;
+  min-width: 250px;
 }
 
 /* Form Header */
@@ -310,13 +311,13 @@ h1, h2, h3, h4 {
 /* Search Bar */
 
 .search-bar {
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   margin-bottom: 20px;
 }
 
 .search-bar-input {
-  width: 65%;
+  width: 80%;
 }
 
 /* Leagues */

@@ -8,9 +8,13 @@ import { useDataFetch } from '../../hooks/useDataFetch'
 
 const TeamDetails = () => {
 
-    const { league, team, teamId } = useParams()
+    const { league, team } = useParams()
 
-    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/lookupteam.php?id=${teamId}`)
+    const strTeam = team.split('-').join('_')
+
+    console.log(strTeam)
+
+    const [isLoading, data, error] = useDataFetch(`https://www.thesportsdb.com/api/v1/json/50130162/searchteams.php?t=${strTeam}`)
 
     const [teamDetails, setTeamDetails] = useState({})
 
@@ -43,7 +47,7 @@ const TeamDetails = () => {
                 <>
                     <article className="team-details-header">
                         <figure className="team-logo">
-                            <img src={`${teamDetails.strTeamBadge}/preview`} alt={`${teamDetails.strTeam} badge`} className="responsive-img" />
+                            <img src={`${teamDetails.strTeamBadge}`} alt={`${teamDetails.strTeam} badge`} className="responsive-img" />
                         </figure>
                         <h2>{teamDetails.strTeam}</h2>
                     </article>

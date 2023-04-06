@@ -44,7 +44,8 @@ const LeagueTable = () => {
                 :
                 <>
                     <h2>{formattedLeagueName}</h2>
-                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>Learn More</button>
+                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/details`)}>League Details</button>
+                    <button className="league-details-button highlight" onClick={() => history.push(`/search-competitions/${params.league}/${params.leagueId}/results`)}>Check Scores</button>
                     <br />
                     <br />
                     <Dropdown dropdownOptions={listOfSeasons} prompt={"Select a season"} onChangeFunction={onSeasonSelect} />

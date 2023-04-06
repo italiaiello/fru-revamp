@@ -18,6 +18,8 @@ import LeagueTable from './pages/LeagueTable/LeagueTable';
 import LeagueDetails from './pages/LeagueDetails/LeagueDetails';
 import TeamDetails from './pages/TeamDetails/TeamDetails';
 import PlayerDetails from './pages/PlayerDetails/PlayerDetails';
+import RecentResults from './pages/RecentResults/RecentResults';
+import EventStatistics from './pages/EventStatistics/EventStatistics';
 
 
 const App = () => {
@@ -46,6 +48,12 @@ const App = () => {
                 </Route>
                 <Route path={`/search-competitions/:league/:leagueId/details`}>
                     <LeagueDetails />
+                </Route>
+                <Route exact path={`/search-competitions/:league/:leagueId/results`}>
+                    <RecentResults />
+                </Route>
+                <Route path={`/search-competitions/:league/:leagueId/results/:resultId`}>
+                    <EventStatistics />
                 </Route>
                 <Route exact path={`/search-competitions/:league/:team/:teamId`}>
                     <TeamDetails />
