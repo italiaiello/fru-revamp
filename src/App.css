@@ -361,6 +361,17 @@ h4 {
   background: linear-gradient(180deg, #c9b7a1, #634D32);
 }
 
+@media (width <= 600px) {
+  .leagues {
+    width: 90%;
+  }
+
+  .league-card {
+    width: 100%;
+    height: 300px;
+  }
+}
+
 .league-badge {
   width: 60%;
   margin: 0;
