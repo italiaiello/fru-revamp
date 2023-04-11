@@ -22,30 +22,25 @@ const Register = () => {
     const onPasswordChange = e => {setPassword(e.target.value); setShowErrorMessage(false)}
     const onConfirmedPasswordChange = e => {setConfirmedPassword(e.target.value); setShowErrorMessage(false)}
     
-    const isEmailValid = (e) => {
-        e.preventDefault();
-        var re = /^\S+@\S+[.][0-9a-z]+$/;
-        if (!re.test(email)) {
-            setErrorMessage("Email is incorrect");
-            setShowErrorMessage(true);
-        }
-    }
-
-    const checkPasswordsMatch = (e) => {
-        e.preventDefault();
+    const checkPasswordsMatch = () => {
         if (password !== confirmedPassword) {
             setErrorMessage("Passwords do not match");
             setShowErrorMessage(true);
+            return false
         }
+
+        return true
     }
 
     const onSubmitRegister = (e) => {
         e.preventDefault();
-        setIsSubmitting(true)
-
-        if (!isEmailValid || !checkPasswordsMatch) {
+        
+        if (!checkPasswordsMatch()) {
+            setShowErrorMessage(true)
             return
         }
+
+        setIsSubmitting(true)
 
         createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
@@ -55,6 +50,28 @@ const Register = () => {
         .catch((error) => {
             console.log(error.message)
             setIsSubmitting(false)
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                  setErrorMessage(`This email is already in use.`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/invalid-email':
+                  setErrorMessage(`This email is invalid`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/operation-not-allowed':
+                  setErrorMessage(`Error during sign up.`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/weak-password':
+                  setErrorMessage('Password must be at least 6 characters');
+                  setShowErrorMessage(true)
+                  break;
+                default:
+                  setErrorMessage(error.message);
+                  setShowErrorMessage(true)
+                  break;
+            }
         })
     }
 

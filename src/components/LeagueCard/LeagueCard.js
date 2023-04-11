@@ -37,7 +37,7 @@ const LeagueCard = ({ leagueId, leagueName }) => {
         <article className="league-card option" onClick={onLeagueSelect}>
             {   
                 leagueBadge ?
-                <figure className="league-badge" >
+                <figure className="league-badge">
                     <img src={leagueBadge} alt={leagueName} className="responsive-img" />
                 </figure>
                 :

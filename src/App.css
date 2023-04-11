@@ -14,6 +14,25 @@ h1, h2, h3, h4 {
   font-family: Halant;
 }
 
+h1 {
+  font-size: 3rem;
+  color: #634D32;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #634D32;
+}
+
+h3 {
+  font-size: 2rem;
+  color: #E2B071;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
 .fru-section {
   width: 100%;
 }
@@ -38,11 +57,11 @@ h1, h2, h3, h4 {
 }
 
 .option:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 .option:active {
-  transform: scale(0.95);
+  transform: scale(0.97);
 }
 
 .highlight {
@@ -244,8 +263,6 @@ h1, h2, h3, h4 {
 }
 
 .signin-section h2 {
-  position: absolute;
-  top: 10px;
   font-size: 2rem;
   color: #E2B071;
 }
@@ -282,12 +299,12 @@ h1, h2, h3, h4 {
 }
 
 .form-redirection {
-  color: #E2B071;
+  color: #e09f4f;
   cursor: pointer;
 }
 
 .form-redirection:hover, .form-redirection:active {
-  color: #e09f4f;
+  color: #E2B071;
 }
 
 /* Error Message */
@@ -336,17 +353,21 @@ h1, h2, h3, h4 {
   height: 350px;
   margin: 10px;
   padding-top: 50px;
-  background-color: #e2af71;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
+  background: linear-gradient(180deg, #c9b7a1, #634D32);
 }
 
 .league-badge {
   width: 60%;
   margin: 0;
+}
+
+.league-badge img {
+  filter: drop-shadow(1px 1px 4px #252222);
 }
 
 .no-image {
@@ -363,9 +384,10 @@ h1, h2, h3, h4 {
 .league-name-container {
   width: 100%;
   height: 80px;
-  background-color: #634D32;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  /* background-color: #634D32; */
+  border-radius: 10px;
+  /* border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; */
   display: flex;
   justify-content: center;
   align-items: center;

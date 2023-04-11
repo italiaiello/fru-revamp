@@ -27,31 +27,41 @@ const EventStatistics = () => {
                 isLoadingStats || isLoadingEvent ?
                 <Loading message={"Loading statistics..."} />
                 :
-                <>
-                    <figure className="event-statistics__figure">
-                        <img src={`${event?.events[0]?.strThumb}/preview`} alt={`${event?.events[0]?.strEvent} banner`} className="responsive-img" />
-                    </figure>
-                    <h2>{statistics?.eventstats[0]?.strEvent}</h2>
-                    <article className="event-statistics__stats-table">
-                        <article className="event-statistics__stats-table--row">
-                            <p>{event?.events[0]?.intHomeScore}</p>
-                            <p>Goals</p>
-                            <p>{event?.events[0]?.intAwayScore}</p>
-                        </article>
-                        {
-                            statistics?.eventstats?.map(stat => {
-                                if (stat.strStat === "expected_goals") {
-                                    stat.strStat = "Expected Goals"
-                                }
-                                return <article className="event-statistics__stats-table--row">
-                                    <p>{stat.intHome}</p>
-                                    <p>{stat.strStat}</p>
-                                    <p>{stat.intAway}</p>
+                (
+                    <>
+                    {
+                        statistics?.eventstats === null ?
+                        <p>No stats available for this event</p>
+                        :
+                        <>
+                            <figure className="event-statistics__figure">
+                                <img src={`${event?.events[0]?.strThumb}/preview`} alt={`${event?.events[0]?.strEvent} banner`} className="responsive-img" />
+                            </figure>
+                            <h2>{statistics?.eventstats[0]?.strEvent}</h2>
+                            <article className="event-statistics__stats-table">
+                                <article className="event-statistics__stats-table--row">
+                                    <p>{event?.events[0]?.intHomeScore}</p>
+                                    <p>Goals</p>
+                                    <p>{event?.events[0]?.intAwayScore}</p>
                                 </article>
-                            })
-                        }
-                    </article>
-                </>
+                                {
+                                    statistics?.eventstats?.map(stat => {
+                                        if (stat.strStat === "expected_goals") {
+                                            stat.strStat = "Expected Goals"
+                                        }
+                                        return <article className="event-statistics__stats-table--row">
+                                            <p>{stat.intHome}</p>
+                                            <p>{stat.strStat}</p>
+                                            <p>{stat.intAway}</p>
+                                        </article>
+                                    })
+                                }
+                            </article>
+                        </>
+                    }
+                    </>
+
+                )
             }
         </section>
     )

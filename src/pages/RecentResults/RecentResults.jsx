@@ -16,6 +16,13 @@ const RecentResults = () => {
         return <>Network Error</>
     }
 
+    const formattedLeague = league.split('-').map(word => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')
+
+    const handleResultSelect = (e, league, leagueId, resultId) => {
+        e.preventDefault();
+        history.push(`/search-competitions/${league}/${leagueId}/results/${resultId}`)
+    }
+
     return (
         <section className="recent-results">
             {
@@ -23,15 +30,16 @@ const RecentResults = () => {
                 <Loading message={"Loading results..."} />
                 :
                 <>
-                    <h2>Recent Results (Last 15)</h2>
+                    <h2>{formattedLeague}</h2>
+                    <h3>Recent Results (Last 15)</h3>
                     <article className="recent-results__fixture-container">
                         {
                             results?.events?.map(result => (
-                                <article className="recent-results__fixture-container--fixture option" onClick={() => history.push(`/search-competitions/${league}/${leagueId}/results/${result.idEvent}`)}>
-                                    <figure className="recent-results__fixture-container--fixture__figure">
+                                <article className="recent-results__fixture-container--fixture">
+                                    <figure className="recent-results__fixture-container--fixture__figure option" onClick={(e) => handleResultSelect(e, league, leagueId, result.idEvent)}>
                                         <img src={`${result.strThumb}/preview`} alt={result.strEvent} className="responsive-img"/>
                                     </figure>
-                                    <h3>{`${result.strHomeTeam} ${result.intHomeScore} - ${result.intAwayScore} ${result.strAwayTeam}`}</h3>
+                                    <p className="recent-results__fixture-container--fixture__result option" onClick={(e) => handleResultSelect(e, league, leagueId, result.idEvent)}>{`${result.strHomeTeam} ${result.intHomeScore} - ${result.intAwayScore} ${result.strAwayTeam}`}</p>
                                 </article>
                             ))
                         }

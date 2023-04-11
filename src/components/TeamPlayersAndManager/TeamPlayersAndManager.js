@@ -37,11 +37,11 @@ const TeamPlayersAndManager = ({ league, leagueId, team, urlTeam }) => {
     const getExistingImage = (thumb, cutout, render) => {
 
         if (cutout) {
-            return cutout
+            return `${cutout}/preview`
         } else if (thumb) {
-            return thumb
+            return `${thumb}/preview`
         } else if (render) {
-            return render
+            return `${render}/preview`
         } else {
             return null
         }
@@ -64,7 +64,7 @@ const TeamPlayersAndManager = ({ league, leagueId, team, urlTeam }) => {
                         <article>
                             <h2>Manager</h2>
                             <article className="player-section__player-card-container">
-                                <article className="player-section__player-card-container--player-card option">
+                                <article className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(manager[0].strPlayer, manager[0].idPlayer)}>
                                     {
                                         getExistingImage(manager[0].strThumb, manager[0].strCutout, manager[0].strRender) !== null &&
                                         <figure>
@@ -76,80 +76,99 @@ const TeamPlayersAndManager = ({ league, leagueId, team, urlTeam }) => {
                             </article>
                         </article>
                     }
-
                     <section>
-                        <article>
-                            <h2>Goalkeepers</h2>
-                            <article className="player-section__player-card-container">
-                                {
-                                    goalkeepers.map(keeper => (
-                                        <article key={keeper.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(keeper.strPlayer, keeper.idPlayer)}>
-                                            {
-                                                getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender) !== null &&
-                                                <figure>
-                                                    <img src={getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender)} alt={keeper.strPlayer} />
-                                                </figure>
-                                            }
-                                            <p>{keeper.strPlayer}</p>
-                                        </article>
-                                    ))
-                                }
+                        {
+                            goalkeepers.length ?
+                            <article>
+                                <h2>Goalkeepers</h2>
+                                <article className="player-section__player-card-container">
+                                    {
+                                        goalkeepers.map(keeper => (
+                                            <article key={keeper.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(keeper.strPlayer, keeper.idPlayer)}>
+                                                {
+                                                    getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender) !== null &&
+                                                    <figure>
+                                                        <img src={getExistingImage(keeper.strThumb, keeper.strCutout, keeper.strRender)} alt={keeper.strPlayer} />
+                                                    </figure>
+                                                }
+                                                <p>{keeper.strPlayer}</p>
+                                            </article>
+                                        ))
+                                    }
+                                </article>
                             </article>
-                        </article>
-                        <article>
-                            <h2>Defenders</h2>
-                            <article className="player-section__player-card-container">
-                                {
-                                    defenders.map(defender => (
-                                        <article key={defender.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(defender.strPlayer, defender.idPlayer)}>
-                                            {
-                                                getExistingImage(defender.strThumb, defender.strCutout, defender.strRender) !== null &&
-                                                <figure>
-                                                    <img src={getExistingImage(defender.strThumb, defender.strCutout, defender.strRender)} alt={defender.strPlayer} />
-                                                </figure>
-                                            }
-                                            <p>{defender.strPlayer}</p>
-                                        </article>
-                                    ))
-                                }
+                            :
+                            null
+                        }
+                        {
+                            defenders ?
+                            <article>
+                                <h2>Defenders</h2>
+                                <article className="player-section__player-card-container">
+                                    {
+                                        defenders.map(defender => (
+                                            <article key={defender.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(defender.strPlayer, defender.idPlayer)}>
+                                                {
+                                                    getExistingImage(defender.strThumb, defender.strCutout, defender.strRender) !== null &&
+                                                    <figure>
+                                                        <img src={getExistingImage(defender.strThumb, defender.strCutout, defender.strRender)} alt={defender.strPlayer} />
+                                                    </figure>
+                                                }
+                                                <p>{defender.strPlayer}</p>
+                                            </article>
+                                        ))
+                                    }
+                                </article>
                             </article>
-                        </article>
-                        <article>
-                            <h2>Midfielders</h2>
-                            <article className="player-section__player-card-container">
-                                {
-                                    midfielders.map(midfielder => (
-                                        <article key={midfielder.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(midfielder.strPlayer, midfielder.idPlayer)}>
-                                            {
-                                                getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender) !== null &&
-                                                <figure>
-                                                    <img src={getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender)} alt={midfielder.strPlayer} />
-                                                </figure>
-                                            }
-                                            <p>{midfielder.strPlayer}</p>
-                                        </article>
-                                    ))
-                                }
+                            :
+                            null
+                        }
+                        {
+                            midfielders.length ?
+                            <article>
+                                <h2>Midfielders</h2>
+                                <article className="player-section__player-card-container">
+                                    {
+                                        midfielders.map(midfielder => (
+                                            <article key={midfielder.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(midfielder.strPlayer, midfielder.idPlayer)}>
+                                                {
+                                                    getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender) !== null &&
+                                                    <figure>
+                                                        <img src={getExistingImage(midfielder.strThumb, midfielder.strCutout, midfielder.strRender)} alt={midfielder.strPlayer} />
+                                                    </figure>
+                                                }
+                                                <p>{midfielder.strPlayer}</p>
+                                            </article>
+                                        ))
+                                    }
+                                </article>
                             </article>
-                        </article>
-                        <article>
-                            <h2>Wingers</h2>
-                            <article className="player-section__player-card-container">
-                                {
-                                    wingers.map(winger => (
-                                        <article key={winger.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(winger.strPlayer, winger.idPlayer)}>
-                                            {
-                                                getExistingImage(winger.strThumb, winger.strCutout, winger.strRender) !== null &&
-                                                <figure>
-                                                    <img src={getExistingImage(winger.strThumb, winger.strCutout, winger.strRender)} alt={winger.strPlayer} />
-                                                </figure>
-                                            }
-                                            <p>{winger.strPlayer}</p>
-                                        </article>
-                                    ))
-                                }
+                            :
+                            null
+                        }
+                        {
+                            wingers.length ?
+                            <article>
+                                <h2>Wingers</h2>
+                                <article className="player-section__player-card-container">
+                                    {
+                                        wingers.map(winger => (
+                                            <article key={winger.idPlayer} className="player-section__player-card-container--player-card option" onClick={() => onPlayerSelect(winger.strPlayer, winger.idPlayer)}>
+                                                {
+                                                    getExistingImage(winger.strThumb, winger.strCutout, winger.strRender) !== null &&
+                                                    <figure>
+                                                        <img src={getExistingImage(winger.strThumb, winger.strCutout, winger.strRender)} alt={winger.strPlayer} />
+                                                    </figure>
+                                                }
+                                                <p>{winger.strPlayer}</p>
+                                            </article>
+                                        ))
+                                    }
+                                </article>
                             </article>
-                        </article>
+                            :
+                            null
+                        }
                         <article>
                             <h2>Forwards</h2>
                             <article className="player-section__player-card-container">

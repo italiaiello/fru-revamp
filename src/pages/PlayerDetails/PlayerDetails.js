@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Loading from '../../components/Loading/Loading'
 import { usePlayerFetch } from '../../hooks/usePlayerFetch'
@@ -12,10 +12,27 @@ const PlayerDetails = () => {
 
     const getPlayerAge = (dateOfBirth) => new Date().getFullYear() - new Date(dateOfBirth).getFullYear()
 
+    const [playerImage, setPlayerImage] = useState(null)
+
+    useEffect(() => {
+        if (playerDetails) {
+            if (playerDetails.strCutout) {
+                setPlayerImage(playerDetails.strCutout)
+            } else if (playerDetails.strThumb) {
+                setPlayerImage(playerDetails.strThumb)
+            } else if (playerDetails.strRender) {
+                setPlayerImage(playerDetails.strRender)
+            } else if (playerDetails.strBanner) {
+                setPlayerImage(playerDetails.strBanner)
+            }
+        }
+    }, [playerDetails])
+
     if (error) {
         console.log(error)
         return <>Network error</>
     }
+
 
     return (
         <section className="player-details">
@@ -26,9 +43,12 @@ const PlayerDetails = () => {
                 <>
                     <article>
                         <article className="player-details__header">
-                            <figure className="player-details__header--figure">
-                                <img src={playerDetails.strCutout} alt={playerDetails.strPlayer} className="responsive-img" />
-                            </figure>
+                            {
+                                playerImage &&
+                                <figure className="player-details__header--figure">
+                                    <img src={playerImage} alt={playerDetails.strPlayer} className="responsive-img" />
+                                </figure>
+                            }
                             <h2 className="player-details__header--name">{playerDetails.strPlayer}</h2>
                         </article>
                         <article className='player-details__info-box-container'>

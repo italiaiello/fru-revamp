@@ -33,7 +33,7 @@ const LeagueTable = () => {
 
     if (error) {
         console.log(error)
-        return <>Network Error</>
+        return <>League table is unavailable for this league</>
     }
 
     return (
@@ -91,8 +91,7 @@ const LeagueTable = () => {
                         </section>
                         
                     }
-                </>
-                
+                </>                
             }
         </section>
     )
