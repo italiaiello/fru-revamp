@@ -13,6 +13,7 @@ const SignIn = () => {
     const [password, setPassword] = useState('');
 
     const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("")
 
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -35,8 +36,35 @@ const SignIn = () => {
             history.push("/search-competitions")
         })
         .catch((error) => {
+            console.log(error.code)
             console.log(error.message)
             setIsSubmitting(false)
+            switch (error.code) {
+                case 'auth/user-not-found':
+                  setErrorMessage(`This user doesn't exist. Please register to create an account`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/invalid-email':
+                  setErrorMessage(`This email is invalid`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/operation-not-allowed':
+                  setErrorMessage(`Error during sign in.`);
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/weak-password':
+                  setErrorMessage('Password must be at least 6 characters');
+                  setShowErrorMessage(true)
+                  break;
+                case 'auth/wrong-password':
+                    setErrorMessage('Email or password is incorrect')
+                    setShowErrorMessage(true)
+                    break;
+                default:
+                  setErrorMessage(error.message);
+                  setShowErrorMessage(true)
+                  break;
+            }
         });
     }
 
@@ -56,7 +84,7 @@ const SignIn = () => {
                 </article>
                 {
                     showErrorMessage &&
-                    <ErrorMessage message={"Email or password is incorrect"} />
+                    <ErrorMessage message={errorMessage} />
                 }
                 {
                     isSubmitting ?
