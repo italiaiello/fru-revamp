@@ -53,47 +53,47 @@ const PlayerDetails = () => {
                         </article>
                         <article className='player-details__info-box-container'>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Age</h3>
+                                <h4>Age</h4>
                                 <p>{`${getPlayerAge(playerDetails.dateBorn)}`}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Height</h3>
+                                <h4>Height</h4>
                                 <p>{playerDetails.strHeight === "" ? "Unknown" : playerDetails.strHeight}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Weight</h3>
+                                <h4>Weight</h4>
                                 <p>{playerDetails.strWeight === "" ? "Unknown" : playerDetails.strWeight}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Position</h3>
+                                <h4>Position</h4>
                                 <p>{playerDetails.strPosition === "" ? "Unknown" : playerDetails.strPosition}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Preferred Foot</h3>
+                                <h4>Preferred Foot</h4>
                                 <p>{playerDetails.strSide === "" ? "Unknown" : playerDetails.strSide}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Birth Location</h3>
+                                <h4>Birth Location</h4>
                                 <p>{playerDetails.strBirthLocation === "" ? "Unknown" : playerDetails.strBirthLocation}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Agent</h3>
+                                <h4>Agent</h4>
                                 <p>{playerDetails.strAgent === "" ? "Unknown" : playerDetails.strAgent}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Wage</h3>
+                                <h4>Wage</h4>
                                 <p>{playerDetails.strWage  === "" ? "Unknown" : playerDetails.strWage}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Signing Fee</h3>
+                                <h4>Signing Fee</h4>
                                 <p>{playerDetails.strSigning  === "" ? "Unknown" : playerDetails.strSigning}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Shirt Number</h3>
+                                <h4>Shirt Number</h4>
                                 <p>{playerDetails.strNumber === "" ? "Unknown" : playerDetails.strNumber}</p>
                             </article>
                             <article className="player-details__info-box-container--info-box">
-                                <h3>Nationality</h3>
+                                <h4>Nationality</h4>
                                 <p>{playerDetails.strNationality  === "" ? "Unknown" : playerDetails.strNationality}</p>
                             </article>
                         </article>

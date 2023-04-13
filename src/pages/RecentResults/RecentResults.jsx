@@ -36,9 +36,12 @@ const RecentResults = () => {
                         {
                             results?.events?.map(result => (
                                 <article className="recent-results__fixture-container--fixture">
-                                    <figure className="recent-results__fixture-container--fixture__figure option" onClick={(e) => handleResultSelect(e, league, leagueId, result.idEvent)}>
-                                        <img src={`${result.strThumb}/preview`} alt={result.strEvent} className="responsive-img"/>
-                                    </figure>
+                                    {
+                                        result.strThumb &&
+                                        <figure className="recent-results__fixture-container--fixture__figure option" onClick={(e) => handleResultSelect(e, league, leagueId, result.idEvent)}>
+                                            <img src={`${result.strThumb}/preview`} alt={result.strEvent} className="responsive-img"/>
+                                        </figure>
+                                    }
                                     <p className="recent-results__fixture-container--fixture__result option" onClick={(e) => handleResultSelect(e, league, leagueId, result.idEvent)}>{`${result.strHomeTeam} ${result.intHomeScore} - ${result.intAwayScore} ${result.strAwayTeam}`}</p>
                                 </article>
                             ))

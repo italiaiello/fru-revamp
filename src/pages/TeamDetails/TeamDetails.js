@@ -19,7 +19,7 @@ const TeamDetails = () => {
     const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
-        if (data) {
+        if (data?.teams[0]) {
             setTeamDetails(data.teams[0])
         }
     }, [data])
